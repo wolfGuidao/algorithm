@@ -36,5 +36,8 @@ string multiply(string num1, string num2) {
 
 int main()
 {
+  string s1 {"12"};
+  string s2 {"12"};
+  cout<<multiply(s1,s2)<<endl;
   return 0;
 }
