@@ -20,7 +20,7 @@ class Solution {
       //遍历整个数组
       for (int i = 0; i < intervals.size(); ++i) 
       {
-        //定义一个临时变量，方便用来寻找区间的右边界
+        //定义一个临时变量，用来记录重叠区间的右边界
         vector<int> temp = intervals[i];
 
         //代表当前区间和intervals中的下一个区间重叠
