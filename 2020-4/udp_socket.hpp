@@ -3,6 +3,8 @@
 
 class UdpSocket
 {
+  public:
+
   UdpSocket()
   {
     _fd = -1;
