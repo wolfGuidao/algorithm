@@ -19,7 +19,7 @@ class TcpSocket
       return true;
     }
 
-    bool Bind(string& ip,uint16_t& port)
+    bool Bind(const string& ip,const uint16_t& port)
     {
       sockaddr_in addr;
       addr.sin_family = AF_INET;
