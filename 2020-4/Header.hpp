@@ -47,6 +47,7 @@ using namespace std;
 #include <sys/time.h>
 #include <signal.h>
 #include <sys/socket.h>
+#include <sys/types.h>
 #include <unistd.h>
 #include <fcntl.h>
 #include <netinet/in.h>
@@ -56,7 +57,6 @@ using namespace std;
 #include <mutex>
 #include <sys/shm.h>
 #include <errno.h>
-#include <boost/algorithm/string.hpp>
 
 #if 0
 ///////////////////////////////////////////////////////
