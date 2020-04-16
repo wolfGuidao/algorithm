@@ -95,7 +95,7 @@ class TcpSocket
       return true;
     }
 
-    bool Connect(const string& ip,uint16_t& port)
+    bool Connect(const string& ip,const uint16_t& port)
     {
       sockaddr_in addr;
       addr.sin_addr.s_addr = inet_addr(ip.c_str());
