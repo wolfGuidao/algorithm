@@ -1,0 +1,111 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.8	//
+Accept	tcp_socket.hpp	/^    bool Accept(TcpSocket* newSocket,string* ip = nullptr,uint16_t* port = nullptr)$/;"	f	class:TcpSocket
+AddTask	4-5.cpp	/^    void AddTask(Task* task)$/;"	f	class:ThreadPool
+Bind	tcp_socket.hpp	/^    bool Bind(const string& ip,const uint16_t& port)$/;"	f	class:TcpSocket
+Bind	udp_socket.hpp	/^  bool Bind(const string& ip,const uint16_t& port)$/;"	f	class:UdpSocket
+BlockQueue	4-5.cpp	/^    BlockQueue(int max_size)$/;"	f	class:BlockQueue
+BlockQueue	4-5.cpp	/^class BlockQueue $/;"	c	file:
+CC	Makefile	/^CC=g++$/;"	m
+CGarbo	4-1.cpp	/^    class CGarbo$/;"	c	class:Singleton	file:
+CHECK_RET	tcp_server.hpp	4;"	d
+Close	tcp_socket.hpp	/^    bool Close()$/;"	f	class:TcpSocket
+Close	udp_socket.hpp	/^  bool Close()$/;"	f	class:UdpSocket
+Connect	tcp_client.hpp	/^    bool Connect(const string& ip,const uint16_t& port)$/;"	f	class:TcpClient
+Connect	tcp_socket.hpp	/^    bool Connect(const string& ip,const uint16_t& port)$/;"	f	class:TcpSocket
+DES	Makefile	/^DES=server $/;"	m
+DES1	Makefile	/^DES1=client$/;"	m
+FLAG	Makefile	/^FLAG=-std=c++11 -lpthread$/;"	m
+GetInstance	4-1.cpp	/^    static Singleton* GetInstance()$/;"	f	class:Singleton
+Handler	tcp_server.hpp	/^typedef function<void(const string& req,string* resp)> Handler;$/;"	t
+Handler	udp_server.hpp	/^typedef function<void(const string& req,string* resp)> Handler;$/;"	t
+Listen	tcp_socket.hpp	/^    bool Listen(size_t size)$/;"	f	class:TcpSocket
+MyTask	4-5.cpp	/^    MyTask(int id)$/;"	f	class:MyTask
+MyTask	4-5.cpp	/^class MyTask : public Task$/;"	c	file:
+Pop	4-5.cpp	/^    void Pop(T* data)$/;"	f	class:BlockQueue
+Push	4-5.cpp	/^    void Push(const T& data)$/;"	f	class:BlockQueue
+Recv	tcp_client.hpp	/^    bool Recv(string* resp)$/;"	f	class:TcpClient
+Recv	tcp_socket.hpp	/^    int Recv(string* req)$/;"	f	class:TcpSocket
+RecvFrom	udp_client.hpp	/^    bool RecvFrom(string* resp)$/;"	f	class:UdpClient
+RecvFrom	udp_socket.hpp	/^  bool RecvFrom(string* req,string* ip = nullptr,uint16_t* port = nullptr)$/;"	f	class:UdpSocket
+Run	4-5.cpp	/^    virtual void Run()$/;"	f	class:MyTask
+Run	4-5.cpp	/^    virtual void Run()$/;"	f	class:Task
+S01	4-4.cpp	/^string S01(int n)$/;"	f
+SRC	Makefile	/^SRC=udp_server.cpp $/;"	m
+SRC1	Makefile	/^SRC1=udp_client.cpp$/;"	m
+Send	tcp_client.hpp	/^    bool Send(const string req)$/;"	f	class:TcpClient
+Send	tcp_socket.hpp	/^    bool Send(const string& resp)$/;"	f	class:TcpSocket
+SendTo	udp_client.hpp	/^    bool SendTo(const string& req,const string& ip,const uint16_t& port)$/;"	f	class:UdpClient
+SendTo	udp_socket.hpp	/^  bool SendTo(const string& resp,const string& ip,const uint16_t& port)$/;"	f	class:UdpSocket
+Singleton	4-1.cpp	/^    Singleton()$/;"	f	class:Singleton	file:
+Singleton	4-1.cpp	/^class Singleton$/;"	c	file:
+Socket	tcp_socket.hpp	/^    bool Socket()$/;"	f	class:TcpSocket
+Socket	udp_socket.hpp	/^  bool Socket()$/;"	f	class:UdpSocket
+Solution	4-3.cpp	/^class Solution $/;"	c	file:
+Start	tcp_server.hpp	/^    bool Start(const string& ip,const uint16_t& port,Handler handler)$/;"	f	class:TcpServer
+Start	udp_server.hpp	/^    bool Start(const string& ip,const uint16_t& port,Handler handler)$/;"	f	class:UdpServer
+Task	4-5.cpp	/^class Task $/;"	c	file:
+TcpClient	tcp_client.hpp	/^    TcpClient()$/;"	f	class:TcpClient
+TcpClient	tcp_client.hpp	/^class TcpClient $/;"	c
+TcpServer	tcp_server.hpp	/^    TcpServer()$/;"	f	class:TcpServer
+TcpServer	tcp_server.hpp	/^class TcpServer $/;"	c
+TcpSocket	tcp_socket.hpp	/^    TcpSocket()$/;"	f	class:TcpSocket
+TcpSocket	tcp_socket.hpp	/^class TcpSocket $/;"	c
+TestSplit	4-2.cpp	/^void TestSplit()$/;"	f
+ThreadEntry	4-5.cpp	/^    static void* ThreadEntry(void* arg)$/;"	f	class:ThreadPool
+ThreadPool	4-5.cpp	/^    ThreadPool(int ThreadCount)$/;"	f	class:ThreadPool
+ThreadPool	4-5.cpp	/^class ThreadPool$/;"	c	file:
+UdpClient	udp_client.hpp	/^    UdpClient()$/;"	f	class:UdpClient
+UdpClient	udp_client.hpp	/^class UdpClient$/;"	c
+UdpServer	udp_server.hpp	/^    UdpServer()$/;"	f	class:UdpServer
+UdpServer	udp_server.hpp	/^class UdpServer $/;"	c
+UdpSocket	udp_socket.hpp	/^  UdpSocket()$/;"	f	class:UdpSocket
+UdpSocket	udp_socket.hpp	/^class UdpSocket$/;"	c
+_Consume	4-5.cpp	/^    sem_t _Consume;$/;"	m	class:BlockQueue	file:
+_Product	4-5.cpp	/^    sem_t _Product;$/;"	m	class:BlockQueue	file:
+_fd	tcp_socket.hpp	/^    int _fd;$/;"	m	class:TcpSocket
+_fd	udp_socket.hpp	/^    int _fd;$/;"	m	class:UdpSocket
+_head	4-5.cpp	/^    int _head;$/;"	m	class:BlockQueue	file:
+_id	4-5.cpp	/^    int _id;$/;"	m	class:MyTask	file:
+_lock	4-5.cpp	/^    sem_t _lock;$/;"	m	class:BlockQueue	file:
+_max_size	4-5.cpp	/^    int _max_size;$/;"	m	class:BlockQueue	file:
+_mutex	4-1.cpp	/^    static pthread_mutex_t _mutex;$/;"	m	class:Singleton	file:
+_mutex	4-1.cpp	/^pthread_mutex_t Singleton::_mutex;$/;"	m	class:Singleton	file:
+_queue	4-5.cpp	/^    BlockQueue<Task*> _queue;$/;"	m	class:ThreadPool	file:
+_queue	4-5.cpp	/^    vector<T> _queue;$/;"	m	class:BlockQueue	file:
+_size	4-5.cpp	/^    int _size;$/;"	m	class:BlockQueue	file:
+_sock	tcp_client.hpp	/^    TcpSocket _sock;$/;"	m	class:TcpClient
+_sock	tcp_server.hpp	/^    TcpSocket _sock;$/;"	m	class:TcpServer
+_sock	udp_client.hpp	/^    UdpSocket _sock;$/;"	m	class:UdpClient
+_sock	udp_server.hpp	/^    UdpSocket _sock;$/;"	m	class:UdpServer
+_tail	4-5.cpp	/^    int _tail;$/;"	m	class:BlockQueue	file:
+_vec	4-5.cpp	/^    vector<pthread_t> _vec;$/;"	m	class:ThreadPool	file:
+_work_thread_count	4-5.cpp	/^    int _work_thread_count;$/;"	m	class:ThreadPool	file:
+cgarbo	4-1.cpp	/^    static CGarbo cgarbo;$/;"	m	class:Singleton	file:
+cgarbo	4-1.cpp	/^Singleton::CGarbo cgarbo;$/;"	v
+instance	4-1.cpp	/^    static Singleton* instance;$/;"	m	class:Singleton	file:
+instance	4-1.cpp	/^Singleton* Singleton::instance = nullptr;$/;"	m	class:Singleton	file:
+main	4-1.cpp	/^int main() $/;"	f
+main	4-2.cpp	/^int main()$/;"	f
+main	4-4.cpp	/^int main()$/;"	f
+main	4-5.cpp	/^int main()$/;"	f
+main	4-6.cpp	/^int main()$/;"	f
+main	tcp_client.cpp	/^int main()$/;"	f
+main	tcp_server.cpp	/^int main()$/;"	f
+main	udp_client.cpp	/^int main()$/;"	f
+main	udp_server.cpp	/^int main()$/;"	f
+updateMatrix	4-3.cpp	/^    vector<vector<int>> updateMatrix(vector<vector<int>>& matrix) $/;"	f	class:Solution
+updateMatrix	4-3.cpp	/^vector<vector<int> > updateMatrix(vector<vector<int> >& matrix)$/;"	f
+~BlockQueue	4-5.cpp	/^    ~BlockQueue()$/;"	f	class:BlockQueue
+~CGarbo	4-1.cpp	/^        ~CGarbo ()$/;"	f	class:Singleton::CGarbo
+~Singleton	4-1.cpp	/^    ~Singleton()$/;"	f	class:Singleton	file:
+~Task	4-5.cpp	/^    virtual ~Task()$/;"	f	class:Task
+~TcpClient	tcp_client.hpp	/^    ~TcpClient()$/;"	f	class:TcpClient
+~TcpServer	tcp_server.hpp	/^    ~TcpServer()$/;"	f	class:TcpServer
+~ThreadPool	4-5.cpp	/^    ~ThreadPool()$/;"	f	class:ThreadPool
+~UdpClient	udp_client.hpp	/^    ~UdpClient()$/;"	f	class:UdpClient
+~UdpServer	udp_server.hpp	/^    ~UdpServer()$/;"	f	class:UdpServer
