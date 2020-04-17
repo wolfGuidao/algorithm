@@ -1,9 +1,9 @@
-SRC=udp_server.cpp 
+SRC=tcp_server_process.cpp 
 DES=server 
 CC=g++
 FLAG=-std=c++11 -lpthread
 
-SRC1=udp_client.cpp
+SRC1=tcp_client.cpp
 DES1=client
 
 .PHONY:
