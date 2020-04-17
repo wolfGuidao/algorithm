@@ -8,6 +8,11 @@ class TcpSocket
     {
       _fd = -1;
     }
+    TcpSocket(const int fd)
+      :_fd(fd)
+    {
+
+    }
 
     bool Socket()
     {
@@ -115,7 +120,16 @@ class TcpSocket
         close(_fd);
       return true;
     }
+
+    int GetFd()const 
+    {
+      return _fd;
+    }
   private:
     int _fd;
 };
 
+bool operator<(const TcpSocket& l,const TcpSocket& r)
+{
+  return l.GetFd() < r.GetFd();
+}
