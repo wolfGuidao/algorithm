@@ -3,6 +3,10 @@
 int main()
 {
   UdpClient client;
+  while(1)
+  {
+
+  
   string req;
   printf("client input:\n");
   getline(cin,req);
@@ -10,5 +14,6 @@ int main()
   string resp;
   client.RecvFrom(&resp);
   printf("server say:%s\n",resp.c_str());
+  }
   return 0;
 }

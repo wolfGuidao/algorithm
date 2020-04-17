@@ -8,7 +8,6 @@ int main()
           printf("client say:%s\n",req.c_str());
           printf("server input:\n");
           getline(cin,*resp);
-
         });
   return 0;
 }

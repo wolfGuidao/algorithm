@@ -33,7 +33,7 @@ class UdpServer
         string resp;
         handler(req,&resp);
 
-        _sock.SendTo(req,_ip,_port);
+        _sock.SendTo(resp,_ip,_port);
       }
     }
   private:

@@ -53,7 +53,6 @@
 #include <mutex>
 #include <sys/shm.h>
 #include <errno.h>
-#include <boost/algorithm/string.hpp>
 
 using namespace std;
 
