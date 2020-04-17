@@ -1,4 +1,4 @@
-SRC=tcp_server_process.cpp 
+SRC=tcp_server_pthread.cpp 
 DES=server 
 CC=g++
 FLAG=-std=c++11 -lpthread
