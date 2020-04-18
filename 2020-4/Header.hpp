@@ -47,6 +47,7 @@ using namespace std;
 #include <sys/time.h>
 #include <signal.h>
 #include <sys/socket.h>
+#include <poll.h>
 #include <sys/types.h>
 #include <unistd.h>
 #include <fcntl.h>
