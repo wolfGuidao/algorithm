@@ -6,6 +6,7 @@
 !_TAG_PROGRAM_VERSION	5.8	//
 Accept	tcp_socket.hpp	/^    bool Accept(TcpSocket* newSocket,string* ip = nullptr,uint16_t* port = nullptr)$/;"	f	class:TcpSocket
 Add	tcp_server_epoll.hpp	/^    void Add(TcpSocket& sock)$/;"	f	class:Epoll
+Add	tcp_server_epollET.hpp	/^    void Add(TcpSocket& sock,bool IsET = false)$/;"	f	class:Epoll
 Add	tcp_server_poll.hpp	/^    void Add(TcpSocket& sock)$/;"	f	class:Poll
 Add	tcp_server_select.hpp	/^    void Add(TcpSocket& sock)$/;"	f	class:Select
 AddTask	4-5.cpp	/^    void AddTask(Task* task)$/;"	f	class:ThreadPool
@@ -26,10 +27,13 @@ Connect	tcp_socket.hpp	/^    bool Connect(const string& ip,const uint16_t& port)
 DES	Makefile	/^DES=server $/;"	m
 DES1	Makefile	/^DES1=client$/;"	m
 Del	tcp_server_epoll.hpp	/^    void Del(TcpSocket& sock)$/;"	f	class:Epoll
+Del	tcp_server_epollET.hpp	/^    void Del(TcpSocket& sock)$/;"	f	class:Epoll
 Del	tcp_server_poll.hpp	/^    void Del(TcpSocket& sock)$/;"	f	class:Poll
 Del	tcp_server_select.hpp	/^    void Del(TcpSocket& sock)$/;"	f	class:Select
 Epoll	tcp_server_epoll.hpp	/^    Epoll()$/;"	f	class:Epoll
 Epoll	tcp_server_epoll.hpp	/^class Epoll$/;"	c
+Epoll	tcp_server_epollET.hpp	/^    Epoll()$/;"	f	class:Epoll
+Epoll	tcp_server_epollET.hpp	/^class Epoll$/;"	c
 FLAG	Makefile	/^FLAG=-std=c++11 -lpthread$/;"	m
 Fun	4-6.cpp	/^void Fun(const int &&){cout << "const rvalue ref" << endl;}$/;"	f
 Fun	4-6.cpp	/^void Fun(const int &){cout << "const lvalue ref" << endl;}$/;"	f
@@ -39,6 +43,7 @@ GetFd	tcp_socket.hpp	/^    int GetFd()const $/;"	f	class:TcpSocket
 GetInstance	4-1.cpp	/^    static Singleton* GetInstance()$/;"	f	class:Singleton
 Handler	tcp_server.hpp	/^typedef function<void(const string& req,string* resp)> Handler;$/;"	t
 Handler	tcp_server_epoll.hpp	/^typedef function<void(const string& req,string* rsp)>Handler;$/;"	t
+Handler	tcp_server_epollET.hpp	/^typedef function<void(const string& req,string* rsp)>Handler;$/;"	t
 Handler	tcp_server_poll.hpp	/^typedef function<void(const string& req,string* resp)> Handler;$/;"	t
 Handler	tcp_server_pool.hpp	/^typedef function<void(const string& req,string* resp)>Handler;$/;"	t
 Handler	tcp_server_process.hpp	/^typedef function<void(const string& req,string* resp)> Handler;$/;"	t
@@ -63,26 +68,30 @@ Recv	tcp_client.hpp	/^    bool Recv(string* resp)$/;"	f	class:TcpClient
 Recv	tcp_socket.hpp	/^    int Recv(string* req)$/;"	f	class:TcpSocket
 RecvFrom	udp_client.hpp	/^    bool RecvFrom(string* resp)$/;"	f	class:UdpClient
 RecvFrom	udp_socket.hpp	/^  bool RecvFrom(string* req,string* ip = nullptr,uint16_t* port = nullptr)$/;"	f	class:UdpSocket
+RecvNoBlock	tcp_socket.hpp	/^    int RecvNoBlock(string* msg)$/;"	f	class:TcpSocket
 Run	4-5.cpp	/^    virtual void Run()$/;"	f	class:MyTask
 Run	4-5.cpp	/^    virtual void Run()$/;"	f	class:Task
 Run	tcp_server_pool.hpp	/^    virtual void Run()$/;"	f	class:MyTask
 Run	tcp_server_pool.hpp	/^    virtual void Run()$/;"	f	class:Task
 S01	4-4.cpp	/^string S01(int n)$/;"	f
-SRC	Makefile	/^SRC=tcp_server_poll.cpp $/;"	m
+SRC	Makefile	/^SRC=tcp_server_epollET.cpp $/;"	m
 SRC1	Makefile	/^SRC1=tcp_client.cpp$/;"	m
 Select	tcp_server_select.hpp	/^class Select $/;"	c
 Send	tcp_client.hpp	/^    bool Send(const string req)$/;"	f	class:TcpClient
 Send	tcp_socket.hpp	/^    bool Send(const string& resp)$/;"	f	class:TcpSocket
+SendNoBlock	tcp_socket.hpp	/^    bool SendNoBlock(const string& msg)const$/;"	f	class:TcpSocket
 SendTo	udp_client.hpp	/^    bool SendTo(const string& req,const string& ip,const uint16_t& port)$/;"	f	class:UdpClient
 SendTo	udp_socket.hpp	/^  bool SendTo(const string& resp,const string& ip,const uint16_t& port)$/;"	f	class:UdpSocket
+SetNoBlock	tcp_socket.hpp	/^    bool SetNoBlock()$/;"	f	class:TcpSocket
 Singleton	4-1.cpp	/^    Singleton()$/;"	f	class:Singleton	file:
 Singleton	4-1.cpp	/^class Singleton$/;"	c	file:
 SockArg	tcp_server_pool.hpp	/^struct SockArg$/;"	s
 Socket	tcp_socket.hpp	/^    bool Socket()$/;"	f	class:TcpSocket
 Socket	udp_socket.hpp	/^  bool Socket()$/;"	f	class:UdpSocket
 Solution	4-3.cpp	/^class Solution $/;"	c	file:
-Start	tcp_server.hpp	/^    bool Start(const string& ip,const uint16_t& port,Handler handler)$/;"	f	class:TcpServer
-Start	tcp_server_epoll.hpp	/^    bool Start(const string& ip,uint16_t& port,Handler hander)$/;"	f	class:TcpEpollServer
+Start	tcp_server.hpp	/^    bool Start(const string& ip, uint16_t port,Handler handler)$/;"	f	class:TcpServer
+Start	tcp_server_epoll.hpp	/^    bool Start(const string& ip,uint16_t port,Handler hander)$/;"	f	class:TcpEpollServer
+Start	tcp_server_epollET.hpp	/^    bool Start(const string& ip,uint16_t port,Handler hander)$/;"	f	class:TcpEpollServer
 Start	tcp_server_poll.hpp	/^    bool Start(const string& ip,const uint16_t& port,Handler handler)$/;"	f	class:TcpPollServer
 Start	tcp_server_pool.hpp	/^    bool Start(const string& ip,const uint16_t& port,Handler handler)$/;"	f	class:TcpPoolServer
 Start	tcp_server_process.hpp	/^    bool Start(const string& ip,const uint16_t& port,Handler handler)$/;"	f	class:TcpProcessServer
@@ -97,6 +106,8 @@ TcpClient	tcp_client.hpp	/^    TcpClient()$/;"	f	class:TcpClient
 TcpClient	tcp_client.hpp	/^class TcpClient $/;"	c
 TcpEpollServer	tcp_server_epoll.hpp	/^    TcpEpollServer()$/;"	f	class:TcpEpollServer
 TcpEpollServer	tcp_server_epoll.hpp	/^class TcpEpollServer $/;"	c
+TcpEpollServer	tcp_server_epollET.hpp	/^    TcpEpollServer()$/;"	f	class:TcpEpollServer
+TcpEpollServer	tcp_server_epollET.hpp	/^class TcpEpollServer $/;"	c
 TcpPollServer	tcp_server_poll.hpp	/^    TcpPollServer()$/;"	f	class:TcpPollServer
 TcpPollServer	tcp_server_poll.hpp	/^class TcpPollServer$/;"	c
 TcpPoolServer	tcp_server_pool.hpp	/^    TcpPoolServer()$/;"	f	class:TcpPoolServer
@@ -128,6 +139,7 @@ UdpServer	udp_server.hpp	/^class UdpServer $/;"	c
 UdpSocket	udp_socket.hpp	/^  UdpSocket()$/;"	f	class:UdpSocket
 UdpSocket	udp_socket.hpp	/^class UdpSocket$/;"	c
 Wait	tcp_server_epoll.hpp	/^    void Wait(vector<TcpSocket>* output)$/;"	f	class:Epoll
+Wait	tcp_server_epollET.hpp	/^    void Wait(vector<TcpSocket>* output)$/;"	f	class:Epoll
 Wait	tcp_server_poll.hpp	/^    void Wait(vector<TcpSocket>* output)$/;"	f	class:Poll
 Wait	tcp_server_select.hpp	/^    void Wait(vector<TcpSocket>* output)$/;"	f	class:Select
 _Consume	4-5.cpp	/^    sem_t _Consume;$/;"	m	class:BlockQueue	file:
@@ -136,6 +148,7 @@ _Product	4-5.cpp	/^    sem_t _Product;$/;"	m	class:BlockQueue	file:
 _Product	tcp_server_pool.hpp	/^    sem_t _Product;$/;"	m	class:BlockQueue
 _arg	tcp_server_pool.hpp	/^    SockArg _arg;$/;"	m	class:MyTask
 _epoll_fd	tcp_server_epoll.hpp	/^    int _epoll_fd;$/;"	m	class:Epoll
+_epoll_fd	tcp_server_epollET.hpp	/^    int _epoll_fd;$/;"	m	class:Epoll
 _fd	tcp_socket.hpp	/^    int _fd;$/;"	m	class:TcpSocket
 _fd	udp_socket.hpp	/^    int _fd;$/;"	m	class:UdpSocket
 _head	4-5.cpp	/^    int _head;$/;"	m	class:BlockQueue	file:
@@ -157,6 +170,7 @@ _size	tcp_server_pool.hpp	/^    int _size;$/;"	m	class:BlockQueue
 _sock	tcp_client.hpp	/^    TcpSocket _sock;$/;"	m	class:TcpClient
 _sock	tcp_server.hpp	/^    TcpSocket _sock;$/;"	m	class:TcpServer
 _sock	tcp_server_epoll.hpp	/^    TcpSocket _sock;$/;"	m	class:TcpEpollServer
+_sock	tcp_server_epollET.hpp	/^    TcpSocket _sock;$/;"	m	class:TcpEpollServer
 _sock	tcp_server_poll.hpp	/^    TcpSocket _sock;$/;"	m	class:TcpPollServer
 _sock	tcp_server_pool.hpp	/^    TcpSocket _sock;$/;"	m	class:TcpPoolServer
 _sock	tcp_server_process.hpp	/^    TcpSocket _sock;$/;"	m	class:TcpProcessServer
@@ -189,6 +203,7 @@ main	4-6.cpp	/^int main()$/;"	f
 main	tcp_client.cpp	/^int main()$/;"	f
 main	tcp_server.cpp	/^int main()$/;"	f
 main	tcp_server_epoll.cpp	/^int main()$/;"	f
+main	tcp_server_epollET.cpp	/^int main()$/;"	f
 main	tcp_server_poll.cpp	/^int main()$/;"	f
 main	tcp_server_pool.cpp	/^int main()$/;"	f
 main	tcp_server_process.cpp	/^int main()$/;"	f
@@ -218,11 +233,13 @@ wolf	4-6.cpp	/^namespace wolf $/;"	n	file:
 ~BlockQueue	tcp_server_pool.hpp	/^    ~BlockQueue()$/;"	f	class:BlockQueue
 ~CGarbo	4-1.cpp	/^        ~CGarbo ()$/;"	f	class:Singleton::CGarbo
 ~Epoll	tcp_server_epoll.hpp	/^    ~Epoll()$/;"	f	class:Epoll
+~Epoll	tcp_server_epollET.hpp	/^    ~Epoll()$/;"	f	class:Epoll
 ~Singleton	4-1.cpp	/^    ~Singleton()$/;"	f	class:Singleton	file:
 ~Task	4-5.cpp	/^    virtual ~Task()$/;"	f	class:Task
 ~Task	tcp_server_pool.hpp	/^    virtual ~Task()$/;"	f	class:Task
 ~TcpClient	tcp_client.hpp	/^    ~TcpClient()$/;"	f	class:TcpClient
 ~TcpEpollServer	tcp_server_epoll.hpp	/^    ~TcpEpollServer()$/;"	f	class:TcpEpollServer
+~TcpEpollServer	tcp_server_epollET.hpp	/^    ~TcpEpollServer()$/;"	f	class:TcpEpollServer
 ~TcpPollServer	tcp_server_poll.hpp	/^    ~TcpPollServer()$/;"	f	class:TcpPollServer
 ~TcpPoolServer	tcp_server_pool.hpp	/^    ~TcpPoolServer()$/;"	f	class:TcpPoolServer
 ~TcpProcessServer	tcp_server_process.hpp	/^    ~TcpProcessServer()$/;"	f	class:TcpProcessServer
