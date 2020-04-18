@@ -48,6 +48,7 @@ using namespace std;
 #include <signal.h>
 #include <sys/socket.h>
 #include <poll.h>
+#include <sys/epoll.h>
 #include <sys/types.h>
 #include <unistd.h>
 #include <fcntl.h>

@@ -16,7 +16,7 @@ class TcpServer
     {
       _sock.Close();
     }
-    bool Start(const string& ip,const uint16_t& port,Handler handler)
+    bool Start(const string& ip, uint16_t port,Handler handler)
     {
       CHECK_RET(_sock.Socket());
 

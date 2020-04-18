@@ -1,4 +1,4 @@
-SRC=tcp_server_poll.cpp 
+SRC=tcp_server_epoll.cpp 
 DES=server 
 CC=g++
 FLAG=-std=c++11 -lpthread
