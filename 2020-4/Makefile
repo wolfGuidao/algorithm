@@ -1,10 +1,10 @@
-SRC=tcp_server_epollET.cpp 
-DES=server 
+SRC=4-9.cpp
+DES=test 
 CC=g++
 FLAG=-std=c++11 -lpthread
 
-SRC1=tcp_client.cpp
-DES1=client
+SRC1=
+DES1=
 
 .PHONY:
 all:$(DES) $(DES1)
