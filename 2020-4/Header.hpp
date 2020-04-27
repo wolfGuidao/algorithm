@@ -1,18 +1,18 @@
 #pragma once
 
 //C
-#include <cstdio>
-#include <cstdlib>
-#include <cstring>
+#include <stdio.h>
+#include <stdlib.h>
+#include <string>
 #include <memory.h>
 #include <ctype.h>
-#include <cassert>
-#include <cerrno>
-#include <cmath>
-#include <ctime>
-#include <cfloat>
-#include <csignal>
-#include <csetjmp>
+#include <assert.h>
+#include <errno.h>
+#include <math.h>
+#include <time.h>
+#include <float.h>
+#include <signal.h>
+#include <setjmp.h>
 
 //C++
 #include <iostream>
