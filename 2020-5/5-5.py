@@ -1,3 +1,4 @@
+import test.py
 
 # def Func(n):
 #     if n == 1 or n == 2:
@@ -58,4 +59,5 @@ def main():
     print("now years have cows is {}".format(Func(4)))
 
 if __name__ == "__main__":
+    print(test.__name__)
     main()
