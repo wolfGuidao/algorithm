@@ -15,8 +15,9 @@
 # def subsets(nums):
 #     return findsubsets(nums, len(nums))
 
+ret = [[]]
 def subsets(nums):
-    ret = [[]]
+    global ret
     ret.append([])
     for i in range(0, len(nums)):
         size = len(ret)
