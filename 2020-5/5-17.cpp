@@ -16,17 +16,22 @@ public:
         if (count[rem - 1] != 0)
              return count[rem - 1];
 
-        int min = INT_MAX;
+        int min_count = INT_MAX;
         for (int coin : coins) 
         {
             int res = dp(coins, rem - coin, count);
+            if(res == -1)
+            {
+              continue;
+            }
 
-            if (res >= 0 && res < min)
-                min = 1 + res;
+            min_count = min(min_count, res  + 1);
+            //if (res >= 0 && res < min)
+            //    min = 1 + res;
         }
 
         //保存结果，为下一次的计算减轻负担
-        count[rem - 1] = (min == INT_MAX) ? -1 : min;
+        count[rem - 1] = (min_count == INT_MAX) ? -1 : min_count;
         return count[rem - 1];
 
     }
