@@ -90,6 +90,64 @@ void backtrack(int n, int k, int start, vector<int>& track) {
 	}
 }
 
+class Solution {
+public:
+    vector<vector<int>> ret;//保存最后的结果
+    vector<vector<int>> permute(vector<int>& nums) {
+        if(nums.empty())
+        {
+            return ret;
+        }
+
+        vector<int> track;//保存单次结果
+        backtrack(nums,track);//递归
+        return ret;
+    }
+
+    void backtrack(vector<int>& nums,vector<int>& track)
+    {
+        if(track.size() == nums.size())//当track中的元素和nums中的元素个数相等
+        //时，代表是一种全排列，可以放到ret的结果中
+        {
+            ret.push_back(track);
+            return;
+        }
+
+        //循环回朔
+        for(int i = 0;i < nums.size();i++)
+        {
+            //如果nums[i]这个元素已经存在track中，代表上次的选择错误，
+            //continue回去，判断下一个元素
+            //反之，就把nums这个元素直接放到track中，继续回朔判断
+            if(IsExist(track,nums[i]))
+            {
+                track.push_back(nums[i]);
+            }
+            else
+            {
+                continue;
+            }
+
+            backtrack(nums,track);
+
+            //撤销选择
+            track.pop_back();
+        }
+    }
+
+    //在track中判断一个元素是否已经存在
+    bool IsExist(vector<int>& track,int val)
+    {
+        for(auto e : track)
+        {
+            if(e == val)
+            {
+                return false;
+            }
+        }
+        return true;
+    }
+};
 
 
 int main()
