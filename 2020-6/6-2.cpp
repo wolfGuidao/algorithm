@@ -35,7 +35,7 @@ int func(int n,int L,vector<vector<int>>& arr)
       break;
     }
 
-    if(end >= L)
+    if(end >= L && i < arr.size())
     {
       break;
     }
