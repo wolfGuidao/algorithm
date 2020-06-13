@@ -1,0 +1,38 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.8	//
+AddCount	5-2.cpp	/^    void AddCount()$/;"	f	class:SharedPtr	file:
+CC	Makefile	/^CC=g++$/;"	m
+DES	Makefile	/^DES=test $/;"	m
+DES1	Makefile	/^DES1=$/;"	m
+FLAG	Makefile	/^FLAG=-std=c++11 -lpthread$/;"	m
+Func	5-1.cpp	/^void Func()$/;"	f
+Release	5-2.cpp	/^    void Release()$/;"	f	class:SharedPtr	file:
+SRC	Makefile	/^SRC=5-3.cpp$/;"	m
+SRC1	Makefile	/^SRC1=$/;"	m
+SharedPtr	5-2.cpp	/^    SharedPtr(T* ptr = nullptr)$/;"	f	class:SharedPtr
+SharedPtr	5-2.cpp	/^    SharedPtr(const SharedPtr<T>& sp)$/;"	f	class:SharedPtr
+SharedPtr	5-2.cpp	/^class SharedPtr $/;"	c	file:
+UniquePtr	5-3.cpp	/^    UniquePtr(T * ptr = nullptr)$/;"	f	class:UniquePtr
+UniquePtr	5-3.cpp	/^    UniquePtr(UniquePtr<T> && sp)$/;"	f	class:UniquePtr
+UniquePtr	5-3.cpp	/^class UniquePtr$/;"	c	file:
+UserCount	5-2.cpp	/^    size_t UserCount()$/;"	f	class:SharedPtr
+_count	5-2.cpp	/^    int* _count;$/;"	m	class:SharedPtr	file:
+_mutex	5-2.cpp	/^    mutex* _mutex;$/;"	m	class:SharedPtr	file:
+_ptr	5-2.cpp	/^    T* _ptr;$/;"	m	class:SharedPtr	file:
+_ptr	5-3.cpp	/^    T * _ptr;$/;"	m	class:UniquePtr	file:
+main	5-1.cpp	/^int main()$/;"	f
+main	5-2.cpp	/^int main()$/;"	f
+main	5-3.cpp	/^int main()$/;"	f
+main	error.py	/^def main():$/;"	f
+operator *	5-2.cpp	/^    T& operator*()$/;"	f	class:SharedPtr
+operator *	5-3.cpp	/^    T& operator*() {return *_ptr;}$/;"	f	class:UniquePtr
+operator ->	5-2.cpp	/^    T* operator->()$/;"	f	class:SharedPtr
+operator ->	5-3.cpp	/^    T* operator->() {return _ptr;}$/;"	f	class:UniquePtr
+operator =	5-2.cpp	/^    SharedPtr operator=(const SharedPtr<T>& sp)$/;"	f	class:SharedPtr
+operator =	5-3.cpp	/^    UniquePtr& operator=(UniquePtr<T> && sp)$/;"	f	class:UniquePtr
+~SharedPtr	5-2.cpp	/^    ~SharedPtr()$/;"	f	class:SharedPtr
+~UniquePtr	5-3.cpp	/^    ~UniquePtr()$/;"	f	class:UniquePtr
