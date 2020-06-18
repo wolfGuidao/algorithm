@@ -1,7 +1,7 @@
-SRC=6-28.cpp
+SRC=6-30.cpp
 DES=test 
 CC=g++
-FLAG=-std=c++11 -lpthread
+FLAG=-std=c++11 -lpthread -ljsoncpp -L/usr/include/jsoncpp/json
 
 SRC1=
 DES1=
