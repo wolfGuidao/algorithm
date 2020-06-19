@@ -347,6 +347,7 @@ int main()
 }
 #endif
 
+#if 0
 namespace wolf 
 {
     class String
@@ -436,5 +437,143 @@ int main()
     wolf::String s1("hello");
     wolf::String s2("world");
     wolf::String s3(s2 + s1);
+    return 0;
+}
+#endif
+
+#if 0
+void Fun(int &x)
+{
+    cout << "lvalue ref" << endl;
+}
+
+void Fun(int &&x)
+{
+    cout << "rvalue ref" << endl;
+}
+
+void Fun(const int &x)
+{
+    cout << "const lvalue ref" << endl;
+}
+
+void Fun(const int &&x)
+{
+    cout << "const rvalue ref" << endl;
+}
+
+    template<typename T>
+void PerfectForward(T &&t)
+{
+    Fun(std::forward<T>(t));
+}
+
+int main()
+{
+    PerfectForward(10); // rvalue ref
+    int a;
+    PerfectForward(a); // lvalue ref
+    PerfectForward(std::move(a)); // rvalue ref
+    const int b = 8;
+    PerfectForward(b); // const lvalue ref
+    PerfectForward(std::move(b)); // const rvalue ref
+    return 0;
+}
+#endif 
+
+#include <iostream>
+#include <thread>
+#include <mutex>
+
+//unsigned long sum = 0L;
+//mutex m;
+//
+//void fun(size_t num)
+//{
+//    for (size_t i = 0; i < num; ++i)
+//    {
+//        m.lock();
+//        sum++;
+//        m.unlock();
+//    }
+//}
+
+#if 0
+#include <atomic>
+
+atomic<int> sum{1};
+void fun(size_t num)
+{
+    for(size_t i = 0;i < num;i++)
+    {
+        sum++;
+    }
+}
+
+int main()
+{
+    cout << "Before joining,sum = " << sum << std::endl;
+    thread t1(fun, 10000000);
+    thread t2(fun, 10000000);
+    t1.join();
+    t2.join();
+    cout << "After joining,sum = " << sum << std::endl;
+    return 0;
+}
+#endif
+
+#if 0
+#include <bitset>
+#include <bits/stdc++.h>
+
+void func() throw(int,char*)
+{
+    ;
+}
+
+int main()
+{
+    //bitset<10> bs;
+    //bs.set(1);
+    //bs.set(2);
+    //bs.set(3);
+    //bs.set(4);
+    //bs.set(5);
+
+    try 
+    {
+        int b = 2;
+        int c = 0;
+        if(c == 0)
+        {
+            throw "by 0";
+        }
+        else 
+        {
+            int a = b / c;
+            cout<<a<<endl;
+        }
+    }
+    catch(char* str)
+    {
+        cout<<str<<endl;
+    }
+    catch(char * str)
+    {
+        cout<<str<<endl;
+    }
+    catch(...)
+    {
+        cout<<"false"<<endl;
+    }
+    return 0;
+}
+#endif
+
+
+int main()
+{
+    char str[] = "hello0";
+    cout<<strlen(str)<<endl;
     return 0;
 }
