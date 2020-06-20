@@ -1,10 +1,10 @@
-SRC=7-1.cpp
-DES=server 
+SRC=7-3.cpp
+DES=test 
 CC=g++
 FLAG=-std=c++11 -lpthread
 
-SRC1=7-2.cpp
-DES1=client
+SRC1=
+DES1=
 
 .PHONY:
 all:$(DES) $(DES1)

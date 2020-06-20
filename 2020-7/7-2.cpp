@@ -92,6 +92,7 @@ int main()
 }
 #endif
 
+#if 0
 int main()
 {
     int fd[2];
@@ -111,15 +112,83 @@ int main()
 
         while(1)
         {
-        close(fd[1]);
-        char temp[1024] = {0};
+            close(fd[1]);
+            char temp[1024] = {0};
 
-        read(fd[0],temp,sizeof(temp));
+            read(fd[0],temp,sizeof(temp));
 
-        cout<<temp<<endl;
+            cout<<temp<<endl;
 
-    }}
+        }}
 
     while(1);
+    return 0;
+}
+#endif
+
+#if 0
+void Handler(int)
+{
+    cout<<"i am Handler"<<endl;
+}
+
+int main()
+{
+    //struct sigaction newact;
+    //newact.sa_handler = Handler;
+
+    //sigaction(2,&newact,nullptr);
+
+    struct sigaction newact;
+    newact.sa_handler = Handler;
+    sigaction(2,&newact,nullptr);
+    sigaction(40,&newact,nullptr);
+
+    //sigset_t newset;
+    //sigaddset(&newset,2);
+    //sigprocmask(SIG_BLOCK,&newset,nullptr);
+
+
+    //getchar();
+
+    //sigprocmask(SIG_UNBLOCK,&newset,nullptr);
+    //struct sigaction oldact;
+    //struct sigaction newact;
+    //newact.sa_handler = Handler;
+    //sigemptyset(&newact.sa_mask);
+    //newact.sa_flags = 0;
+
+    //sigaction(2, &newact, &oldact);
+    //signal(2,Handler);
+    //signal(40,Handler);
+
+    sigset_t newset;
+    sigaddset(&newset,2);
+    sigaddset(&newset,40);
+    sigprocmask(SIG_BLOCK,&newset,nullptr);
+    
+    getchar();
+
+    sigprocmask(SIG_UNBLOCK,&newset,nullptr);
+
+    while(1);
+    return 0;
+}
+#endif
+
+void* ThreadEntry(void* arg)
+{
+    cout<<"i am thread"<<endl;
+    pthread_detach(*(pthread_t*)arg);
+    return nullptr;
+}
+
+int main()
+{
+    pthread_t tid;
+    pthread_create(&tid,nullptr,ThreadEntry,&tid);
+    //pthread_join(tid,nullptr);
+    cout<<"i am main thread"<<endl;
+
     return 0;
 }
