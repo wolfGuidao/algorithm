@@ -34,10 +34,11 @@ int main()
             for(int k = i; k < j; k++)
                 dp[i][j] = min(dp[i][j], dp[i][k] + dp[k + 1][j] + sum[j] - sum[i - 1]);
     printf("%d", dp[1][n]);
- return 0;
+    return 0;
 }
 #endif 
 
+#if 0
 #include<bits/stdc++.h>
 using namespace std;
 const int maxn = 105;
@@ -79,4 +80,20 @@ int main(){
 
     cout<<dp[1][n]<<endl;
     return 0;
+}
+#endif
+
+static int a=1;
+void fun1(void){ a=2; }
+void fun2(void){ int a=3; }
+void fun3(void){ static int a=4; }
+int main(int argc,char** args)
+{
+    printf("%d\n",a);
+    fun1( );
+    printf("%d\n",a);
+    fun2( );
+    printf("%d\n",a);
+    fun3( );
+    printf("%d\n",a);
 }
