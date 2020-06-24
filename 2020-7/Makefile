@@ -1,4 +1,4 @@
-SRC=7-3.cpp
+SRC=7-5.cpp
 DES=test 
 CC=g++
 FLAG=-std=c++11 -lpthread

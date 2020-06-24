@@ -83,17 +83,51 @@ int main(){
 }
 #endif
 
-static int a=1;
-void fun1(void){ a=2; }
-void fun2(void){ int a=3; }
-void fun3(void){ static int a=4; }
-int main(int argc,char** args)
+//static int a=1;
+//void fun1(void){ a=2; }
+//void fun2(void){ int a=3; }
+//void fun3(void){ static int a=4; }
+//int main(int argc,char** args)
+//{
+//    printf("%d\n",a);
+//    fun1( );
+//    printf("%d\n",a);
+//    fun2( );
+//    printf("%d\n",a);
+//    fun3( );
+//    printf("%d\n",a);
+//}
+
+class A 
 {
-    printf("%d\n",a);
-    fun1( );
-    printf("%d\n",a);
-    fun2( );
-    printf("%d\n",a);
-    fun3( );
-    printf("%d\n",a);
+    public:
+        A(int aa,int bb)
+            :a(aa)
+             ,b(bb)
+    {}
+
+        void Print()
+        {
+            cout<<a<<" : "<<b<<endl;
+        }
+
+        int a;
+        int b;
+};
+
+int main()
+{
+    //A a(1,2);
+    //a.Print();
+    //int arr[5];
+    //arr = {1,2,3,4};
+    int num = 484;
+    int sum = 0;
+    for(int i = 1;sum < num;i += 2)
+    {
+        sum += i;
+    }
+
+    cout<<(sum == num)<<endl;
+    return 0;
 }
