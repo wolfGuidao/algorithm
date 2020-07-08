@@ -33,6 +33,52 @@ class A
 };
 int A::a = 999;
 
+class Solution {
+public:
+    // 时间复杂度 O(N)
+bool canFinish(vector<int> piles, int speed, int H) 
+{
+    int time = 0;
+    for (int n : piles) 
+    {
+        time += timeOf(n, speed);
+    }
+    return time <= H;
+}
+
+int timeOf(int n, int speed) 
+{
+    return (n / speed) + ((n % speed > 0) ? 1 : 0);
+}
+
+int getMax(vector<int> piles) 
+{
+    int maxx = 0;
+    for (int n : piles)
+        maxx = std::max(n, maxx);
+    return maxx;
+}
+
+    int minEatingSpeed(vector<int>& piles, int H) {
+        // 套用搜索左侧边界的算法框架
+    int left = 1, right = getMax(piles) + 1;
+    while (left < right) 
+    {
+        // 防止溢出
+        int mid = left + (right - left) / 2;
+        if (canFinish(piles, mid, H)) 
+        {
+            right = mid;
+        } 
+        else 
+        {
+            left = mid + 1;
+        }
+    }
+    return left;
+    }
+};
+
 void TestDeque()
 {
     //deque<int> deq;
