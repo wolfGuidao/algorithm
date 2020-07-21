@@ -35,6 +35,13 @@ static int a = 999;
 #include <set>
 #include <list>
 
+void Func(const int a)
+{
+    cout<<a<<endl;
+}
+
+
+
 int main()
 {
     //pthread_t tid;
@@ -62,5 +69,8 @@ int main()
     //cout<<sizeof(long)<<endl;
     INT i = 999;
     cout<<i<<endl;
+
+    int num = 999;
+    Func(num);
     return 0;
 }
