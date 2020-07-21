@@ -8,6 +8,7 @@
 #include <iostream>
 #include <unistd.h>
 using namespace std;
+using INT = int;
 
 void* ThreadEntry(void* arg)
 {
@@ -41,23 +42,25 @@ int main()
     ////pthread_join(tid,nullptr);
     //static int a = 666;
     //cout<<a<<endl;
-    set<int> arr{1,2,3,4,5,56,7,8};
-    for(auto e : arr)
-    {
-        cout<<e<<" ";
-    }
-    cout<<endl;
+    //set<int> arr{1,2,3,4,5,56,7,8};
+    //for(auto e : arr)
+    //{
+    //    cout<<e<<" ";
+    //}
+    //cout<<endl;
 
-    auto it = arr.begin();
-    while(it != arr.end())
-    {
-        it = arr.erase(it);
-    }
-    cout<<"after"<<endl;
-    for(auto e : arr)
-    {
-        cout<<e<<" ";
-    }
-    cout<<sizeof(long)<<endl;
+    //auto it = arr.begin();
+    //while(it != arr.end())
+    //{
+    //    it = arr.erase(it);
+    //}
+    //cout<<"after"<<endl;
+    //for(auto e : arr)
+    //{
+    //    cout<<e<<" ";
+    //}
+    //cout<<sizeof(long)<<endl;
+    INT i = 999;
+    cout<<i<<endl;
     return 0;
 }
