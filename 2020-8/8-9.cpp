@@ -126,3 +126,46 @@ public:
     }
 };
 
+class Solution {
+public:
+    vector<string> letterCombinations(string digits) {
+        if(digits.empty())
+        {
+            return ret;
+        }
+
+        backtack(digits,0);
+
+        return ret;
+    }
+    private:
+    unordered_map<char,string> num_map = {
+        {'2',"abc"},
+        {'3',"def"},
+        {'4',"ghi"},
+        {'5',"jkl"},
+        {'6',"mno"},
+        {'7',"pqrs"},
+        {'8',"tuv"},
+        {'9',"wxyz"},
+    };
+
+    string str;
+    vector<string> ret;
+
+    void backtack(string digits,int index)
+    {
+        if(index == digits.size())
+        {
+            ret.push_back(str);
+        }
+
+        for(int i = 0;i < num_map[digits[index]].size();i++)
+        {
+            str.push_back(num_map[digits[index]][i]);
+            backtack(digits,index + 1);
+            str.pop_back();
+        }
+    }
+};
+
