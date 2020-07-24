@@ -169,3 +169,142 @@ public:
     }
 };
 
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode(int x) : val(x), next(NULL) {}
+ * };
+ */
+class Solution {
+public:
+    ListNode* Merge(ListNode* head1,ListNode* head2)
+    {
+        if(nullptr == head1)
+        {
+            return head2;
+        }
+
+        if(nullptr == head2)
+        {
+            return head1;
+        }
+
+        ListNode* new_head = nullptr;
+
+        if(head1->val <= head2->val)
+        {
+            new_head = head1;
+            new_head->next = Merge(head1->next,head2);
+        }
+        else 
+        {
+            new_head = head2;
+            new_head->next = Merge(head1,head2->next);
+        }
+
+        return new_head;
+    }
+
+    ListNode* MergeChild(vector<ListNode*>& lists,int left,int right)
+    {
+        if(left == right)
+        {
+            return lists[right];
+        }
+
+        if(left > right)
+        {
+            return nullptr;
+        }
+
+        int mid = (left + right) >> 1;
+
+        return Merge(MergeChild(lists,left,mid),MergeChild(lists,mid + 1,right));
+    }
+
+    struct Pri_Node
+    {
+        Pri_Node(int val,ListNode* ptr)
+        :_val(val)
+        ,_ptr(ptr)
+        {
+
+        }
+
+        bool operator<(const Pri_Node node) const
+        {
+            return _val > node._val;
+            //return _val < node._val;
+            //return node1._val > node2._val;
+        }
+
+        int _val;
+        ListNode* _ptr;
+    };
+
+    class cmp
+    {
+        bool operator()(const Pri_Node node1,Pri_Node node2)
+        {
+            return node1._val > node2._val;
+        }
+    };
+    
+
+    typedef Pri_Node Node;
+    //priority_queue<Node,vector<Node>,cmp> que;
+    priority_queue<Node> que;
+
+    ListNode* mergeKLists(vector<ListNode*>& lists) {
+        if(lists.empty())
+        {
+            return nullptr;
+        }
+
+        if(lists.size() == 1)
+        {
+            return lists[0];
+        }
+
+        /*
+        ListNode* new_head = Merge(lists[0],lists[1]);
+
+        for(int i = 2;i < lists.size();i++)
+        {
+            new_head = Merge(new_head,lists[i]);
+        }
+
+        return new_head;
+        */
+
+        //return MergeChild(lists,0,lists.size() - 1);
+
+        for(auto e : lists)
+        {
+            if(e)
+            {
+                Node temp(e->val,e);
+                que.push(temp);
+            }
+        }
+
+        ListNode* new_head = new ListNode(0);
+        ListNode* tail = new_head;
+        while(!que.empty())
+        {
+            Node node = que.top();
+            que.pop();
+
+            tail->next = node._ptr;
+            tail = tail->next;
+
+            if(node._ptr->next)
+                que.push({node._ptr->next->val,node._ptr->next});          
+        }
+
+        return new_head->next;
+    }
+};
+
