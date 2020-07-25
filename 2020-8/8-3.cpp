@@ -207,45 +207,129 @@ using namespace std;
 //}
 
 class MaxGap {
-public:
-    int findMaxGap(vector<int> A, int n) {
-        // write code here
-        stack<int> right_to_left;
-        
-        for(int i = n - 1;i > 0;i--)
-        {
-            if(right_to_left.top() > A[i])
+    public:
+        int findMaxGap(vector<int> A, int n) {
+            // write code here
+            stack<int> right_to_left;
+
+            for(int i = n - 1;i > 0;i--)
             {
-                continue;
+                if(right_to_left.top() > A[i])
+                {
+                    continue;
+                }
+
+                right_to_left.push(A[i]);
             }
-            
-            right_to_left.push(A[i]);
-        }
-        
-        int ret = 0;
-        int left = INT_MIN;
-        for(int k = 0;k <= n - 2;k++)
-        {
-            //[0,k]
-            //[k + 1,N - 1]
-            left = max(left,A[k]);
-            
-            if(right_to_left.top() == A[k])
+
+            int ret = 0;
+            int left = INT_MIN;
+            for(int k = 0;k <= n - 2;k++)
             {
-                if(!right_to_left.empty())
-                    right_to_left.pop();
+                //[0,k]
+                //[k + 1,N - 1]
+                left = max(left,A[k]);
+
+                if(right_to_left.top() == A[k])
+                {
+                    if(!right_to_left.empty())
+                        right_to_left.pop();
+                }
+
+                ret = max(ret,abs(left - right_to_left.top()));
             }
-            
-            ret = max(ret,abs(left - right_to_left.top()));
+
+            return ret;
         }
-        
-        return ret;
-    }
+};
+
+class Printer {
+    public:
+        vector<int> clockwisePrint(vector<vector<int> > mat, int n, int m) {
+            // write code here
+            vector<vector<bool>> visted(n,vector<bool>(m,false));
+
+            vector<int> ret;
+            int count = n * m;
+
+            int i = 0;
+            int j = 0;
+            while(count)
+            {
+                cout<<count<<endl;
+                cout<<"i: "<<i<<" j: "<<j<<endl;
+                while(j < m && visted[i][j] == false)
+                {
+                    ret.push_back(mat[i][j]);
+                    count--;
+                    cout<<count<<endl;
+                    cout<<"i: "<<i<<" j: "<<j<<endl;
+                    visted[i][j] = true;
+                    j++;
+                    cout<<"i: "<<i<<" j: "<<j<<endl;
+                }
+
+                cout<<"i: "<<i<<" j: "<<j<<endl;
+                j--;
+                i++;
+                cout<<"i: "<<i<<" j: "<<j<<endl;
+
+                while(i < n && visted[i][j] == false)
+                {
+                    ret.push_back(mat[i][j]);
+                    count--;
+                    cout<<count<<endl;
+                    cout<<"i: "<<i<<" j: "<<j<<endl;
+                    visted[i][j] = true;
+                    i++;
+                    cout<<"i: "<<i<<" j: "<<j<<endl;
+                }
+
+                cout<<"i: "<<i<<" j: "<<j<<endl;
+                i--;
+                j--;
+
+                cout<<"i: "<<i<<" j: "<<j<<endl;
+                while(j >= 0 && visted[i][j] == false)
+                {
+                    ret.push_back(mat[i][j]);
+                    count--;
+                    cout<<count<<endl;
+                    cout<<"i: "<<i<<" j: "<<j<<endl;
+                    visted[i][j] = true;
+                    j--;
+                    cout<<"i: "<<i<<" j: "<<j<<endl;
+                }
+
+                cout<<"i: "<<i<<" j: "<<j<<endl;
+                j++;
+                i--;
+
+                cout<<"i: "<<i<<" j: "<<j<<endl;
+                while(i >= 0 && visted[i][j] == false)
+                {
+                    ret.push_back(mat[i][j]);
+                    count--;
+                    cout<<count<<endl;
+                    cout<<"i: "<<i<<" j: "<<j<<endl;
+                    visted[i][j] = true;
+                    i--;
+                    cout<<"i: "<<i<<" j: "<<j<<endl;
+                }
+            }
+            return ret;
+        }
 };
 
 int main()
 {
-    vector<int> arr {2,7,3,1,1};
-    cout<<MaxGap().findMaxGap(arr,5)<<endl;
+    vector<vector<int>> arr {{1,2,3},{4,5,6},{7,8,9}};
+    vector<int> ret = Printer().clockwisePrint(arr,3,3);
+
+    for(auto e : ret)
+    {
+        cout<<e<<" ";
+    }
+    cout<<endl;
     return 0;
 }
