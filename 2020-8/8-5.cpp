@@ -118,3 +118,42 @@ int main()
     return 0;
 }
 
+class Solution {
+public:
+    bool wordBreak(string s, vector<string>& wordDict) {
+        if(s.empty())
+        {
+            return true;
+        }
+        if(wordDict.empty())
+        {
+            return false;
+        }
+
+        unordered_map<string,int> word_map;
+        for(auto e : wordDict)
+        {
+            word_map[e]++;
+        }
+
+        //dp[i]代表从0到i - 1之间到字符串满足情况  
+        vector<bool> dp(s.size() + 1);
+        dp[0] = true;
+
+        //枚举每一个位置
+        for(int i = 1;i <= s.size();i++)
+        {
+            //再次枚举[0,j -  1]和[j,i - 1]两个子串，如果有一种满足情况即为true
+            for(int j = 0;j < i;j++)
+            {
+                if(dp[j] && word_map.count(s.substr(j,i - j)))
+                {
+                    dp[i] = true;
+                    break;
+                }
+            }
+        }
+
+        return dp[s.size()];
+    }
+};
