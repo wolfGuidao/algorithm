@@ -61,3 +61,89 @@ int main()
     cout<<so.Median()<<endl;
     return 0;
 }
+
+/*
+class Solution {
+public:
+    int maximalRectangle(vector<vector<char>>& matrix) {
+        if(matrix.empty())
+        {
+            return 0;
+        }
+
+        vector<vector<int>> dp(matrix.size(),vector<int>(matrix[0].size(),0));
+
+        for(int i = 0;i < matrix.size();i++)
+        {
+            for(int j = 0;j < matrix[0].size();j++)
+            {
+                if(j == 0)
+                {
+                    if(matrix[i][0] == '0')
+                        dp[i][j] = 0;
+                    else 
+                        dp[i][j] = 1;
+                }
+                else if(matrix[i][j] == '1')
+                {
+                    dp[i][j] = dp[i][j - 1] + 1;
+                }
+                else 
+                {
+                    dp[i][j] = 0;
+                }
+            }
+        }
+
+        int ret = INT_MIN;
+        for(int i = 0;i < matrix.size();i++)
+        {
+            for(int j = 0;j < matrix[0].size();j++)
+            {
+                int col = 0;
+                int row = INT_MAX;
+                
+                for(int k = i;k >= 0;k--)
+                {
+                    if(dp[k][j] == 0)
+                    {
+                        row = INT_MAX;
+                        col = 0;
+                        continue;
+                    }
+                    row = min(dp[k][j],row);
+                    col++;
+                    ret = max(ret,row * col);
+                }
+
+                ret = max(ret,row * col);
+            }
+        }
+
+        return ret;
+    }
+};
+*/
+
+class Solution {
+public:
+	int maximalRectangle(vector<vector<char>>& matrix) {
+		int n = matrix.size();
+		int m = 0;
+		if (n > 0) { m = matrix[0].size(); }
+		vector<vector<int>> heights(n + 1,vector<int>(m + 1,0));
+		vector<vector<vector<int>>> dp(n + 1,vector<vector<int>>(m + 1, vector<int>(n + 1, 0)));
+		int ans = 0;
+		for (int i = 1; i <= n; i++) {
+			for (int j = 1; j <= m; j++) {
+				if (matrix[i-1][j-1] == '0') { continue; }
+				heights[i][j] = heights[i-1][j] + 1;
+				for (int k = 1; k <= heights[i][j]; k++) {
+					dp[i][j][k] = dp[i][j-1][k] + k;
+					ans = max(ans, dp[i][j][k]);
+				}
+			}
+		}
+		return ans;
+	}
+};
