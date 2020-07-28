@@ -101,3 +101,63 @@ int main(int argc, char* argv[])
     }
     return 0;
 }
+
+class Solution {
+public:
+    int maxProduct(vector<int>& nums) {
+        if(nums.empty())
+        {
+            return 0;
+        }
+
+        if(nums.size() == 1)
+        {
+            return nums[0];
+        }
+
+        /*
+        vector<int> dp_max(nums.size());
+        vector<int> dp_min(nums.size());
+        
+        dp_min[0] = nums[0];
+        dp_max[0] = nums[0];
+
+        for(int i = 1;i < nums.size();i++)
+        {
+            dp_max[i] = max(
+                dp_max[i - 1] * nums[i],max(
+                    nums[i],dp_min[i - 1] * nums[i]
+                )
+            );
+
+            dp_min[i] = min(
+                dp_min[i - 1] * nums[i],min(
+                    nums[i],dp_max[i - 1] * nums[i]
+                )
+            );
+        }
+
+        int ret = INT_MIN;
+        for(auto e : dp_max)
+        {
+            ret = max(ret,e);
+        }
+        return ret;
+        */
+
+        int dp_max = nums[0];
+        int dp_min = nums[0];
+        int ret = dp_max;
+
+        for(int i = 1;i < nums.size();i++)
+        {
+            int max_temp = dp_max;
+            int min_temp = dp_min;
+            dp_max = max(max_temp * nums[i],max(nums[i],min_temp * nums[i]));
+            dp_min = min(min_temp * nums[i],min(nums[i],max_temp * nums[i]));
+            ret = max(ret,dp_max);
+        }
+
+        return ret;
+    }
+};
