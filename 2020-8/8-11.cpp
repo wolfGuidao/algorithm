@@ -161,3 +161,103 @@ public:
         return ret;
     }
 };
+
+/*
+class Solution {
+public:
+    int maximalSquare(vector<vector<char>>& matrix) {
+        if(matrix.empty())
+        {
+            return 0;
+        }
+
+        vector<vector<int>> dp(matrix.size(),vector<int>(matrix[0].size(),0));
+
+        for(int i = 0;i < matrix.size();i++)
+        {
+            for(int j = 0;j < matrix[i].size();j++)
+            {
+                if(j == 0)
+                {
+                    if(matrix[i][j] == '0')
+                    {
+                        dp[i][j] = 0;
+                    }
+                    else 
+                    {
+                        dp[i][j] = 1;
+                    }
+                }
+                else if(matrix[i][j] == '1')
+                {
+                    dp[i][j] = dp[i][j - 1] + 1;
+                }
+                else if(matrix[i][j] == '0')
+                {
+                    dp[i][j] = 0;
+                }
+            }
+        }
+
+        int Max_area = INT_MIN;
+        for(int i = 0;i < matrix.size();i++)
+        {
+            for(int j = 0;j < matrix[i].size();j++)
+            {
+                int col = INT_MAX;
+                int row = 0;
+                for(int k = i;k >= 0;k--)
+                {
+                    col = min(col,dp[k][j]);
+                    row++;
+                    
+                    Max_area = max(Max_area,min(col,row) * min(col,row));
+                    if(dp[k][j] == 0)
+                    {
+                        col = INT_MAX;
+                        row = 0;
+                    }
+                }
+            }
+        }
+        return Max_area;
+    }
+};
+*/
+
+class Solution {
+public:
+    int maximalSquare(vector<vector<char>>& matrix) {
+        if (matrix.size() == 0 || matrix[0].size() == 0) {
+            return 0;
+        }
+
+        int maxSide = 0;
+
+        int rows = matrix.size(), columns = matrix[0].size();
+
+        vector<vector<int>> dp(rows, vector<int>(columns));
+
+        for (int i = 0; i < rows; i++) 
+        {
+            for (int j = 0; j < columns; j++) 
+            {
+                if (matrix[i][j] == '1') 
+                {
+                    if (i == 0 || j == 0) 
+                    {
+                        dp[i][j] = 1;
+                    } 
+                    else 
+                    {
+                        dp[i][j] = min(min(dp[i - 1][j], dp[i][j - 1]), dp[i - 1][j - 1]) + 1;
+                    }
+                    maxSide = max(maxSide, dp[i][j]);
+                }
+            }
+        }
+        int maxSquare = maxSide * maxSide;
+        return maxSquare;
+    }
+};
+
