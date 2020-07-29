@@ -8,32 +8,57 @@
 #include <iostream>
 using namespace std;
 
-class A 
-{
-    public:
-    virtual void Print(int a = 999)
-    {
-        cout<<a<<endl;
-    }
-};
+//class A 
+//{
+//    public:
+//    virtual void Print(int a = 999)
+//    {
+//        cout<<a<<endl;
+//    }
+//};
+//
+//class B : public A 
+//{
+//    public:
+//    virtual void Print(int a = 666)
+//    {
+//        cout<<a<<endl;
+//    }
+//};
+//
+//void Test(A& a)
+//{
+//    a.Print();
+//}
+//
+//int main()
+//{
+//    B b;
+//    Test(b);
+//    return 0;
+//}
 
-class B : public A 
+void Print(int& a)
 {
-    public:
-    virtual void Print(int a = 666)
-    {
-        cout<<a<<endl;
-    }
-};
-
-void Test(A& a)
-{
-    a.Print();
+    cout<<a<<endl;
 }
+
+void Print(int* a)
+{
+    cout<<*a<<endl;
+}
+
+//void Print(int a)
+//{
+//    cout<<a<<endl;
+//}
 
 int main()
 {
-    B b;
-    Test(b);
+    int a = 999;
+    int& ra = a;
+    int* pa = &a;
+    Print(ra);
+    Print(pa);
     return 0;
 }
