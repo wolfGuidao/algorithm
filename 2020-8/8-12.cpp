@@ -81,3 +81,34 @@ public:
         return dp_1;
     }
 };
+
+class Solution {
+public:
+    int cuttingRope(int n) {
+        if(n == 2 || n == 3)
+        {
+            return n - 1;
+        }
+        
+        vector<int> dp(n + 1);
+        dp[0] = 0;
+        dp[1] = 1;
+        dp[2] = 2;
+        dp[3] = 3;
+
+        //枚举每一段最优的情况，那么n求出来的结果肯定是有最有结果组成的
+        for(int i = 4;i <= n;i++)
+        {
+            int count = INT_MIN;
+            //对于每一小段，求取最大的乘积结果
+            for(int j = 1;j <= i / 2;j++)
+            {
+                //这里虽然看似只有j和i - j两段，但是这两段肯定是最优的结果
+                count = max(count,dp[j] * dp[i - j]);
+            }
+            dp[i] = count;
+        }
+        return dp[n];
+    }
+};
+
