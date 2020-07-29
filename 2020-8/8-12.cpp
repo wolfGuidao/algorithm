@@ -62,3 +62,22 @@ int main()
     Print(pa);
     return 0;
 }
+
+class Solution {
+public:
+    int massage(vector<int>& nums) {
+        //vector<int> dp(nums.size() + 2,0);
+        int dp_2 = 0;
+        int dp_1 = 0;
+
+        for(int i = nums.size() - 1;i >= 0;i--)
+        {
+            //dp[i] = max(dp[i + 2] + nums[i],dp[i + 1]);
+            int dp_i = max(dp_2 + nums[i],dp_1);
+            dp_2 = dp_1;
+            dp_1 = dp_i;
+        }
+        //return dp[0];
+        return dp_1;
+    }
+};
