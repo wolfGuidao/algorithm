@@ -1,4 +1,4 @@
-SRC=8-3.cpp
+SRC=8-12.cpp
 DES=test 
 CC=g++
 FLAG=-std=c++11 -lpthread -ljsoncpp -L/usr/include/jsoncpp/json
