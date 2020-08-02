@@ -120,3 +120,37 @@ int main()
     cout<<endl;
     return 0;
 }
+
+class Solution {
+public:
+    bool carPooling(vector<vector<int>>& trips, int capacity) {
+        int map[1001],cur=0;
+        memset(map,0,sizeof(map));
+        for (int i=0;i<trips.size();i++){
+            map[trips[i][1]] += trips[i][0];
+            map[trips[i][2]] -= trips[i][0];
+        }
+        for (int i=0;i<1001;i++){
+            cur += map[i];
+            if (cur>capacity)
+                return false;
+        }
+        return true;
+    }
+};
+// 2 ~ 7
+// 3 ~ 9
+// 7 ~ 9
+//map[2] = 3
+//map[7] = -3
+//map[3] = 8
+//map[9] = -8
+//map[7] = 0
+//map[9] = -11
+// 1 ~ 5
+// 3 ~ 7
+//map[1] = 2;
+//map[5] = -2;
+//map[3] = 3
+//map[7] = -3 
+
