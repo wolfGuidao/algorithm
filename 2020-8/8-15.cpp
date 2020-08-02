@@ -9,8 +9,10 @@
 #include <vector>
 #include <algorithm>
 #include <string>
+#include <unordered_map>
 using namespace std;
 
+#if 0
 class Solution {
 public:
     /**
@@ -95,5 +97,26 @@ int main()
 {
     int arr[] = {1,1,2};
     cout<<Solution().reletive_7(arr,3)<<endl;
+    return 0;
+}
+#endif 
+
+int main()
+{
+    unordered_map<int,int> uu {{4,2},{0,1},{5,4}};
+    sort(uu.begin(),uu.end(),[](pair<int,int> left,pair<int,int> right)
+            {
+                if(left.first == right.first)
+                {
+                    return left.second < right.second;
+                }
+                return left.first < right.first;
+            });
+
+    for(auto e : uu)
+    {
+        cout<<e.first<<" : "<<e.second;
+    }
+    cout<<endl;
     return 0;
 }
