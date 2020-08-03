@@ -84,6 +84,58 @@ int main()
 
 int main()
 {
-    cout<<'t' - 'a'<<endl;
     return 0;
 }
+
+class Solution {
+public:
+    int GetSum(int index_x,int index_y)
+    {
+        int sum = 0;
+        while(index_x)
+        {
+            int temp = index_x % 10;
+            index_x = index_x / 10;
+            sum += temp;
+        }
+
+        while(index_y)
+        {
+            int temp = index_y % 10;
+            index_y = index_y / 10;
+            sum += temp;
+        }
+
+        return sum;
+    }
+
+    int count = 0;
+
+    void help(int m,int n,int k,int x,int y,vector<vector<int>>& visted)
+    {
+        if(x < 0 || x >= m || y < 0 || y >= n || GetSum(x,y) > k || visted[x][y])
+        {
+            return ;
+        }
+
+        visted[x][y] = 1;
+        count++;
+        help(m,n,k,x + 1,y,visted);
+        help(m,n,k,x - 1,y,visted);
+        help(m,n,k,x,y + 1,visted);
+        help(m,n,k,x,y - 1,visted);
+    }
+
+    int movingCount(int m, int n, int k) {
+        if(m == 0 && n == 0)
+        {
+            return 0;
+        }
+
+        vector<vector<int>> visted(m,vector<int>(n,0));
+
+        help(m,n,k,0,0,visted);
+
+        return count;
+    }
+};
