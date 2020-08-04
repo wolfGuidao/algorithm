@@ -147,6 +147,7 @@ class Solution {
 #include <algorithm>    // std::adjacent_find
 #include <vector>       // std::vector
 
+#if 0
 bool myfunction (int i, int j) {
     return (i < j);
 }
@@ -262,4 +263,56 @@ int main () {
 
 
     return 0;
+}
+#endif 
+
+
+bool comp_case_insensitive (char c1, char c2) {
+  return (std::tolower(c1)==std::tolower(c2));
+}
+
+bool func(int a,int b)
+{
+    return a > b;
+}
+
+int main () {
+  //int mychars[] = {'a','b','c','A','B','C','a','b','c'};
+  //std::vector<char> haystack (mychars,mychars+9);
+  //std::vector<char>::iterator it;
+
+  //int needle[] = {'D','B','C'};
+
+  //// using default comparison:
+  //it = find_first_of (haystack.begin(), haystack.end(), needle, needle+3);
+
+  //if (it!=haystack.end())
+  //  std::cout << "The first match is: " << *it << '\n';
+
+  //// using predicate comparison:
+  //it = find_first_of (haystack.begin(), haystack.end(),
+  //                    needle, needle+3, comp_case_insensitive);
+
+  //if (it!=haystack.end())
+  //  std::cout << "The first match is: " << *it << '\n';
+
+  //auto func = for_each(haystack.begin(),haystack.end(),[](char a)
+  //        {
+  //              cout<<a<<' ';
+  //        });
+
+  //func('z');
+
+    vector<int> arr1{1,2,3,4,5,6,7,8,9};
+    vector<int> arr2{1,2,4,5,7,9,10};
+    if(includes(arr1.begin(),arr1.end(),arr2.begin(),arr2.end()))
+    {
+        cout<<"True"<<endl;
+    }
+
+    if(is_heap(arr1.begin(),arr1.end(),func))
+    {
+        cout<<"Is a big dui"<<endl;
+    }
+  return 0;
 }
