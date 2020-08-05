@@ -271,9 +271,9 @@ bool comp_case_insensitive (char c1, char c2) {
   return (std::tolower(c1)==std::tolower(c2));
 }
 
-bool func(int a,int b)
+bool func(int a)
 {
-    return a > b;
+    return a <  6 ;
 }
 
 int main () {
@@ -303,16 +303,19 @@ int main () {
 
   //func('z');
 
-    vector<int> arr1{1,2,3,4,5,6,7,8,9};
-    vector<int> arr2{1,2,4,5,7,9,10};
-    if(includes(arr1.begin(),arr1.end(),arr2.begin(),arr2.end()))
-    {
-        cout<<"True"<<endl;
-    }
+    //vector<int> arr1{1,2,3,4};
+    //vector<int> arr2{1,2,3,4};
+    //if(is_permutation(arr1.begin(),arr1.end(),arr2.begin()))
+    //{
+    //    cout<<"True"<<endl;
+    //}
+    
 
-    if(is_heap(arr1.begin(),arr1.end(),func))
-    {
-        cout<<"Is a big dui"<<endl;
-    }
+    string str1 = "aell";
+    string str2 = "Aello";
+    cout<<boolalpha;
+    cout<<std::lexicographical_compare(str1.begin(),str1.end(),str2.begin(),str2.end());
+    
+
   return 0;
 }
