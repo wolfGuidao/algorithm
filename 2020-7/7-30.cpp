@@ -124,3 +124,54 @@ int main()
         printf("%d\n", add);
     }
 }
+
+
+/**
+ * Definition for a binary tree node.
+ * struct TreeNode {
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
+ * };
+ */
+class Solution {
+public:
+    vector<vector<int>> ret;
+
+    void GetSum(TreeNode* root,int sum,vector<int>& track)
+    {
+        if(root == nullptr)
+        {
+            return ;
+        }
+
+        track.push_back(root->val);
+
+        if(root->left == nullptr && root->right == nullptr && sum == root->val)
+        {
+            ret.push_back(track);
+            //return ;
+        }
+
+        
+            
+            GetSum(root->left,sum - root->val,track);
+            GetSum(root->right,sum - root->val,track);
+            track.pop_back();
+        
+        
+    }
+
+    vector<vector<int>> pathSum(TreeNode* root, int sum) {
+        if(root == nullptr)
+        {
+            return {};
+        }
+
+        vector<int> track;
+        GetSum(root,sum,track);
+
+        return ret;
+    }
+};
