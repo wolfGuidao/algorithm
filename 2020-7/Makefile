@@ -1,3 +1,2 @@
-redis: redis.cpp 
-	g++ redis.cpp -o redis -L/usr/local/lib/ -lhiredis
- 
+test:7-30.cpp
+	g++ 7-30.cpp -o test
