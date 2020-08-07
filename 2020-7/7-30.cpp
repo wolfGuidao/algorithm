@@ -112,3 +112,100 @@ int main()
     b.A::Print();
     return 0;
 }
+/**
+ * Definition for a binary tree node.
+ * struct TreeNode {
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode() : val(0), left(nullptr), right(nullptr) {}
+ *     TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
+ *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
+ * };
+ */
+class Solution {
+public:
+    unordered_map<int,int> depth;
+    unordered_map<int,TreeNode*> parent;
+
+    bool isCousins(TreeNode* root, int x, int y) {
+        if(root == nullptr)
+        {
+            return false;
+        }
+
+        /*
+        dfs(root,nullptr);
+        if(depth[x] == depth[y] && parent[x] != parent[y])
+        {
+            return true;
+        }
+        return false;
+        */
+
+        queue<TreeNode*> que;
+        que.push(root);
+
+        int flag = 2;
+        while(!que.empty())
+        {
+            int Size = que.size();
+            for(int i = 0;i < Size;i++)
+            {
+                TreeNode* node = que.front();
+                que.pop();
+                if(node->left && node->right && ((node->left->val == x && node->right->val == y) || (node->left->val == y && node->right->val == x)))
+                {
+                    return false;
+                }
+
+                if(node->left)
+                {
+                    que.push(node->left);
+                }
+
+                if(node->right)
+                {
+                    que.push(node->right);
+                }
+
+                if(node->val == x || node->val == y)
+                {
+                    flag--;
+                }
+            }
+            if(flag == 1)
+            {
+                return false;
+            }
+            else if(flag == 0)
+            {
+                return true;
+            }
+
+            flag = 2;
+        }
+        return false;   
+    }
+
+    void dfs(TreeNode* root,TreeNode* cur)
+    {
+        if(root == nullptr)
+        {
+            return ;
+        }
+
+        if(cur == nullptr)
+        {
+            depth[root->val] = 0;
+        }
+        else 
+        {
+            depth[root->val] = depth[cur->val] + 1;
+        }
+
+        parent[root->val] = cur;
+        dfs(root->left,root);
+        dfs(root->right,root);
+    }
+};
