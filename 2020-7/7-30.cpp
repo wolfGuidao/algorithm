@@ -7,6 +7,7 @@
 #include <iostream>
 using namespace std;
 
+#if 0
 class Solution {
 public:
     int hammingWeight(uint32_t n) {
@@ -84,3 +85,30 @@ public:
         dfs(root->right,root);
     }
 };
+#endif 
+
+class A
+{
+    public:
+        virtual void Print()
+        {
+            cout<<"i am father"<<endl;
+        }
+};
+
+class B : public A
+{
+    public:
+        virtual void Print()
+        {
+            cout<<"i am child"<<endl;
+        }
+};
+
+int main()
+{
+    B b;
+    b.Print();
+    b.A::Print();
+    return 0;
+}
