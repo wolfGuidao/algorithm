@@ -502,3 +502,40 @@ public:
         return dfs(emp_map,id);
     }
 };
+
+
+class Solution {
+public:
+    vector<vector<int>> dir {{1,0},{-1,0},{0,1},{0,-1}};
+
+    void dfs(vector<vector<int>>& image,vector<vector<bool>>& visted,int row,int col,int curX,int curY,int color,int newColor)
+    {
+        image[curX][curY] = newColor;
+        visted[curX][curY] = true;
+
+        for(auto e : dir)
+        {
+            int newX = e[0] + curX;
+            int newY = e[1] + curY;
+
+            if(newX < 0 || newX >= row || newY < 0 || newY >= col || visted[newX][newY])
+                continue;
+            
+            if(image[newX][newY] == color)
+                dfs(image,visted,row,col,newX,newY,color,newColor);
+        }
+    }
+
+    vector<vector<int>> floodFill(vector<vector<int>>& image, int sr, int sc, int newColor) {
+        if(image.empty())
+        {
+            return {};
+        }
+
+        vector<vector<bool>> visted(image.size(),vector<bool>(image[0].size(),false));
+
+        dfs(image,visted,image.size(),image[0].size(),sr,sc,image[sr][sc],newColor);
+
+        return image;
+    }
+};
