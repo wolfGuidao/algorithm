@@ -456,3 +456,49 @@ public:
     }
 };
 
+/*
+// Definition for Employee.
+class Employee {
+public:
+    int id;
+    int importance;
+    vector<int> subordinates;
+};
+*/
+
+class Solution {
+public:
+    int dfs(unordered_map<int,Employee*> emp_map, int id)
+    {
+        auto it = emp_map.find(id);
+        if(it == emp_map.end())
+        {
+            return 0;
+        }
+
+        int sum = 0;
+        Employee* emp = emp_map[id];
+        sum += emp->importance;
+        for(auto e : emp->subordinates)
+        {
+            sum += dfs(emp_map,e);
+        }
+
+        return sum;
+    }
+
+    int getImportance(vector<Employee*> employees, int id) {
+        if(employees.empty())
+        {
+            return 0;
+        }
+
+        unordered_map<int,Employee*> emp_map;
+        for(auto e : employees)
+        {
+            emp_map[e->id] = e;
+        }
+
+        return dfs(emp_map,id);
+    }
+};
