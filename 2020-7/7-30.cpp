@@ -383,3 +383,76 @@ public:
     }
 };
 
+
+/*
+class Solution {
+public:
+    Node* connect(Node* root) {
+    	if(!root) return root;
+    	queue<Node*> work;
+        work.push(root);
+    	work.push(nullptr);
+    	Node* cur=nullptr;
+    	while(1)
+    	{
+            if(work.front())    //队列首部是结点
+            {
+                cur=work.front();
+    			work.pop();
+                if(cur->left)   //非叶子结点
+                {
+                    work.push(cur->left);
+    			    work.push(cur->right);
+                }
+    			cur->next=work.front();
+            }
+    		else if(work.size()==1) //只剩下一个nullptr结点
+    			return root;
+    		else    //遇到nullptr结点，这是一层的分割点
+    		{
+    			work.pop();
+    			work.push(nullptr);
+    		}
+    	}
+
+        return root;
+    }
+};
+*/
+
+
+class Solution {
+public:
+    Node* connect(Node* root) {
+        if(!root)   return root;
+        queue<Node*> q;
+        Node* flag = new Node; // 用于记录每层树的结束。
+        Node* last = new Node; // 用于记录上一个节点，将上一个节点的next连接当前节点。
+
+        q.push(root); // 根推入队列
+        q.push(flag); // 第一层结束，用flag标记位置
+        while(q.size() >= 2){ //队列内到最后存在一个flag，因此 >2
+            Node* now = q.front(); // 取出当前节点。
+            q.pop();
+            if(now == flag){ // 如果到达每层末尾，last清空，再次推入flag
+                //last -> next = NULL;
+                last = NULL;
+                q.push(flag);
+                continue;
+            }
+            if(last == NULL){ // 说明是新的一层
+                last = now; 
+            }
+            else{ // 否则一定存在last节点
+                last -> next = now;
+                last = now; // 更新last节点
+            }
+            if(now -> left){ //压入新的节点。
+                q.push(now -> left);
+                q.push(now -> right);
+            }
+        }
+        return root; 
+    }
+};
+
