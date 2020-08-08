@@ -258,3 +258,42 @@ public:
         return ret;
     }
 };
+
+
+class Solution {
+public:
+    void backtrack(string& tiles,string cur,unordered_set<string>& ret,vector<bool> visted)
+    {
+        if(!cur.empty())
+        {
+            ret.insert(cur);
+        }
+
+        //A         B               
+        //AA  AB    BA  
+        //AAB ABA BAA 
+        for(int i = 0;i < tiles.size();i++)
+        {
+            if(visted[i] == false)
+            {
+                visted[i] = true;
+                backtrack(tiles,cur + tiles[i],ret,visted);
+                visted[i] = false;
+            }
+            
+        }
+    }
+
+    int numTilePossibilities(string tiles) {
+        if(tiles.empty())
+        {
+            return 0;
+        }
+
+        unordered_set<string> ret;
+        vector<bool> visted(tiles.size(),false);
+        backtrack(tiles,"",ret,visted);
+
+        return ret.size();
+    }
+};
