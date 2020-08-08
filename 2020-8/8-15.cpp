@@ -224,3 +224,37 @@ int main()
     }
     return 0;
 }
+
+class Solution {
+public:
+    void backtrack(vector<int>& candidates,vector<vector<int>>& ret,vector<int> track,int cursum,int prev,int target)
+    {
+        if(cursum >= target)
+        {
+            if(cursum == target)
+                ret.push_back(track);
+            
+            return ;
+        }
+
+        for(int i = prev;i < candidates.size();i++)
+        {
+            track.push_back(candidates[i]);
+            backtrack(candidates,ret,track,cursum + candidates[i],i,target);
+            track.pop_back();
+        }
+    }
+
+    vector<vector<int>> combinationSum(vector<int>& candidates, int target) {
+        if(candidates.empty())
+        {
+            return {};
+        }
+
+        vector<vector<int>> ret;
+        vector<int> track;
+        backtrack(candidates,ret,track,0,0,target);
+
+        return ret;
+    }
+};
