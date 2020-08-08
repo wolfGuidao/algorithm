@@ -101,6 +101,7 @@ int main()
 }
 #endif 
 
+#if 0
 int main()
 {
     unordered_map<int,int> uu {{4,2},{0,1},{5,4}};
@@ -154,3 +155,9 @@ public:
 //map[3] = 3
 //map[7] = -3 
 
+#endif 
+
+int main()
+{
+    return 0;
+}
