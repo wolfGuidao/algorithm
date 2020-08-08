@@ -157,7 +157,70 @@ public:
 
 #endif 
 
+bool IsTrue(vector<int> ret,int val)
+{
+    for(auto e : ret)
+    {
+        if(e == val)
+        {
+            return false;
+        }
+    }
+    return true;
+}
+
+void dfs(vector<int>& arr,vector<vector<int>>& ret,vector<int> track)
+{
+    if(track.size() == arr.size())
+    {
+        ret.push_back(track);
+        return ;
+    }
+
+    for(int i = 0;i < arr.size();i++)
+    {
+        if(IsTrue(track,arr[i]))
+           track.push_back(arr[i]);
+        else 
+            continue;
+
+        dfs(arr,ret,track);
+        track.pop_back();
+    }
+}
+
+void backtrack(vector<int>& arr,vector<vector<int>>& ret,int index)
+{
+    if(index == arr.size())
+    {
+        ret.push_back(arr);
+        return ;
+    }
+
+    for(int i = index;i < arr.size();i++)
+    {
+        swap(arr[i],arr[index]);
+        backtrack(arr,ret,index + 1);
+        swap(arr[i],arr[index]);
+    }
+}
+
 int main()
 {
+    vector<int> arr { 1,4,4};
+    vector<vector<int>> ret;
+    vector<int> track;
+    //dfs(arr,ret,track);
+    backtrack(arr,ret,0);
+
+    for(auto e : ret)
+    {
+        cout<<"[";
+        for(auto m : e)
+        {
+            cout<<m<< " : ";
+        }
+        cout<<']'<<endl;
+    }
     return 0;
 }
