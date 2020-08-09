@@ -437,6 +437,7 @@ int main()
 #include <mutex>
 #include <atomic>
 
+#if 0
 atomic<int> num  {100};
 //int num = 100;
 mutex m;
@@ -467,5 +468,35 @@ int main()
     cout<<num<<endl;
 
     lock_guard<mutex> mm {m};
+    return 0;
+}
+#endif 
+
+bool cmp(int a,int b)
+{
+    return a < b;
+}
+
+class Cmp
+{
+    public:
+        bool operator()(int a,int b)
+        {
+            return a < b;
+        }
+};
+
+int main()
+{
+    vector<int> arr {3,5,8,1,6,3,8,2,8,0};
+    sort(arr.begin(),arr.end(),Cmp());
+
+    for(auto e : arr)
+    {
+        cout<<e<<" ";
+    }
+
+    cout<<endl;
+
     return 0;
 }
