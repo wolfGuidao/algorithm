@@ -393,7 +393,7 @@ class SharedPtr
         int* _count;
 };
 
-
+#if 0
 int main()
 {
     SharedPtr<string> sp1(new string("hello"));
@@ -406,5 +406,66 @@ int main()
     SharedPtr<string> sp4(new string("world"));
     cout<<sp4.GetCount()<<endl;
 
+    return 0;
+}
+#endif 
+
+#include <thread>
+#if 0
+int main()
+{
+    int a = 999;
+    int b = 666;
+    thread t1([]()
+            {
+                cout<<"i am thread1"<<endl;
+            });
+    t1.join();
+
+    thread t2([](int a,int b)
+            {
+                cout<<"i am thread2"<<endl;
+                cout<<a<<endl;
+                cout<<b<<endl;
+            },a,b);
+    t2.join();
+    cout<<"i am main thread"<<endl;
+    return 0;
+}
+#endif 
+
+#include <mutex>
+#include <atomic>
+
+atomic<int> num  {100};
+//int num = 100;
+mutex m;
+int main()
+{
+    thread t1([]()
+            {
+                for(int i = 0;i < 100;i++)
+                {
+                    m.lock();             
+                    num++;
+                    m.unlock();
+                }
+            });
+
+    thread t2([]()
+            {
+                for(int i = 0;i < 100;i++)
+                {
+                    m.lock();
+                    num--;
+                    m.unlock();
+                }
+            });
+
+    t1.join();
+    t2.join();
+    cout<<num<<endl;
+
+    lock_guard<mutex> mm {m};
     return 0;
 }
