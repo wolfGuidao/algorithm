@@ -121,6 +121,78 @@ public:
     }
 };
 
+class Solution {
+public:
+    int orangesRotting(vector<vector<int>>& grid) {
+        if(grid.empty())
+        {
+            return 0;
+        }
+
+        queue<pair<int,int>> que;
+
+        for(int i = 0;i < grid.size();i++)
+        {
+            for(int j = 0;j < grid[0].size();j++)
+            {
+                if(grid[i][j] == 2)
+                {
+                    que.push({i,j});
+                }
+            }
+        }
+
+        vector<vector<int>> dir {{1,0},{-1,0},{0,1},{0,-1}};
+
+        int count = 0;
+        while(!que.empty())
+        {
+            int Size = que.size();
+
+            bool flag = false;
+
+            for(int i = 0;i < Size;i++)
+            {
+                pair<int,int> index = que.front();
+                que.pop();
+
+                for(auto e : dir)
+                {
+                    int new_x = e[0] + index.first;
+                    int new_y = e[1] + index.second;
+
+                    if(new_x < 0 || new_x >= grid.size() || new_y < 0 || new_y >= grid[0].size())
+                    {
+                        continue;
+                    }
+
+                    if(grid[new_x][new_y] == 1)
+                    {
+                        flag = true;
+                        grid[new_x][new_y] = 2;
+                        que.push({new_x,new_y});
+                    }
+                }
+            }
+            if(flag)
+                count++;
+        }
+
+        for(auto e : grid)
+        {
+            for(auto m : e)
+            {
+                if(m == 1)
+                {
+                    return -1;
+                }
+            }
+        }
+        
+        return count;
+    }
+};
+
 int main()
 {
     set<int> arr {1,2,3,4,5,6,7};
