@@ -214,6 +214,58 @@ public:
     }
 };
 
+class Solution {
+public:
+    bool IsTrue(int num)
+    {
+        for(int i = 2;i <= sqrt(num);i++)
+        {
+            if(num % i == 0)
+            {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+    int countPrimes(int n) {
+        if(n < 2)
+        {
+            return 0;
+        }      
+
+        /*
+        int ret = 0;
+        for(int i = 2;i < n;i++)
+        {
+            if(IsTrue(i))
+            {
+                ret++;
+            }
+        }
+
+        return ret;
+        */
+
+        int count = 0;
+        //初始默认所有数为质数
+        vector<bool> signs(n, true);
+        for (int i = 2; i < n; i++) 
+        {
+            if (signs[i]) 
+            {
+                count++;
+                for (int j = i + i; j < n; j += i) 
+                {
+                    //排除不是质数的数
+                    signs[j] = false;
+                }
+            }
+        }
+    return count;
+    }
+};
 
 int main()
 {
