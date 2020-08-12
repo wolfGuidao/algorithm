@@ -12,6 +12,38 @@
 #include <arpa/inet.h>
 using namespace std;
 
+class Solution {
+public:
+    vector<int> getTriggerTime(vector<vector<int>>& increase, vector<vector<int>>& requirements) {
+        vector<vector<int>> s(increase.size() + 1,vector<int>(3,0));
+        for(int i = 0;i < increase.size();i++)
+        {
+            for(int j = 0;j < 3;j++)
+            {
+                s[i + 1][j] = s[i][j] + increase[i][j];
+            }
+        }
+        vector<int> ans;
+        for(auto v:requirements)
+        {
+            int l = 0, r = increase.size();
+            while(l < r)
+            {
+                int m = (l + r) / 2;
+                if(s[m][0] >= v[0] && s[m][1] >= v[1] && s[m][2] >= v[2])
+                    r = m;
+                else
+                    l = m + 1;
+            }
+            if(s[l][0] >= v[0] && s[l][1] >= v[1] && s[l][2] >= v[2])
+                ans.push_back(l);
+            else
+                ans.push_back(-1);
+        }
+        return ans;
+    }
+};
+
 int main()
 {
     int sock = socket(AF_INET,SOCK_STREAM,0);
