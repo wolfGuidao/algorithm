@@ -44,6 +44,77 @@ public:
     }
 };
 
+class Solution {
+public:
+    vector<vector<int>> ret;
+
+    bool IsTrue(vector<int>& arr1,vector<int>& arr2)
+    {
+        if(arr1.size() != arr2.size())
+        {
+            return false;
+        }
+
+        int index = 0;
+        while(index < arr1.size())
+        {
+            if(arr1[index] != arr2[index])
+            {
+                return false;
+            }
+            index++;
+        }
+
+        return true;
+    }
+
+    bool IsValied(vector<int>& arr)
+    {
+        for(auto e : ret)
+        {
+            if(IsTrue(e,arr))
+            {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    void backtrack(vector<int>& nums,int index)
+    {
+        if(index == nums.size())
+        {
+            //if(IsValied(nums))
+            if(find(ret.begin(),ret.end(),nums) == ret.end())
+            {
+                ret.push_back(nums);
+            }
+                
+            return ;
+        }
+
+        for(int i = index;i < nums.size();i++)
+        {
+            if (i > index && nums[i] == nums[i - 1])
+				continue;
+            swap(nums[i],nums[index]);
+            backtrack(nums,index + 1);
+            swap(nums[i],nums[index]);
+        }
+    }
+
+    vector<vector<int>> permuteUnique(vector<int>& nums) {
+        if(nums.empty())
+        {
+            return {};
+        }
+
+        backtrack(nums,0);
+
+        return ret;
+    }
+};
+
 int main()
 {
     int sock = socket(AF_INET,SOCK_STREAM,0);
