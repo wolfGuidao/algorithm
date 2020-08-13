@@ -138,6 +138,50 @@ public:
 };
 
 
+class Solution {
+public:
+    vector<vector<string>> groupAnagrams(vector<string>& strs) {
+        if(strs.empty())
+        {
+            return {};
+        }   
+
+        /*
+        unordered_map<string,vector<string>> my_map;
+        for(auto& e : strs)
+        {
+            string str(e);
+            sort(str.begin(),str.end());
+
+            my_map[str].push_back(e);
+        }
+
+        vector<vector<string>> ret;
+        for(auto e : my_map)
+        {
+            ret.push_back(e.second);
+        }
+
+        return ret;
+        */
+
+         vector<vector<string>> res;
+        unordered_map <double,vector<string>> m;
+        double a[26]={2,3,5,7,11,13,17,19,23,29,31,37,41,43,47,53,59,61,67,71,73,79,83,89,97,101};
+        for(string& s : strs)
+        {
+            double t = 1;
+            for(char c : s)
+            t *= a[c - 'a'];
+
+            m[t].push_back(s);
+        }
+        for(auto& n : m)
+            res.push_back(n.second);
+        return res;
+    }
+};
+
 int main()
 {
     int sock = socket(AF_INET,SOCK_STREAM,0);
