@@ -182,6 +182,56 @@ public:
     }
 };
 
+class Solution {
+public:
+    double GetNum(double x,int n)
+    {
+        if(n == 0)
+        {
+            return 1;
+        }
+
+        if(n == 1)
+        {
+            return x;
+        }
+
+        double temp = GetNum(x,n / 2);
+        if(n % 2 != 0)
+        {
+            return x * temp * temp;
+        }
+        else 
+        {
+            return temp * temp;
+        }
+    }
+
+    double myPow(double x, int n) {
+        if(n == 0)
+        {
+            return 1.0;
+        }
+        if(x == 0)
+        {
+            return 0.0;
+        }
+
+        int flag = 1;
+        int count = abs(n);
+        if(n < 0)
+        {
+            flag = 0;
+        }
+
+        double ret = GetNum(x,count);
+        if(flag)
+            return ret;
+        
+        return 1.0 / ret;
+    }
+};
+
 int main()
 {
     int sock = socket(AF_INET,SOCK_STREAM,0);
