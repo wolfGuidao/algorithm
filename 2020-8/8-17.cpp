@@ -292,6 +292,69 @@ public:
     }
 };
 
+class Solution {
+public:
+    vector<vector<int>> generateMatrix(int n) {
+        if(n < 1)
+        {
+            return {};
+        }
+
+        vector<vector<int>> ret(n,vector<int>(n));
+
+        //左边界
+        int left = 0;
+
+        //右边界
+        int right = n - 1;
+
+        //上边界
+        int top = 0;
+
+        //下边界
+        int down = n - 1;
+
+        int num = 1;
+
+        while(left <= right && top <= down)
+        {
+            //打印左右边界之间的值，即从左往右
+            for(int i = left;i <= right;i++)
+            {
+                ret[top][i] = num++;
+            }           
+
+            //打印上下边界之间的值，即从上往下， + 1的原因是因为第一个元素在上一步已经打印
+            for(int j = top + 1; j <= down;j++)
+            {
+                ret[j][right] = num++;
+            }
+
+            //打印右左边界之间的值，即从右往左打印， - 1的原因同理
+            //top != down的目的值防止只有一行的情况，当不只一行的时候才进行从右往左打印
+            for(int m = right - 1;m >= left && top != down;m--)
+            {
+                ret[down][m] = num++;
+            }
+
+            //打印下上边界之间的值，注意这个边界，n > top
+            //left != right的原因同理，防止只有一列的情况，当不只一列的时候才进行从下往上打印
+            for(int n = down - 1;n > top && left != right;n--)
+            {
+                ret[n][left] = num++;
+            }  
+
+            left++;
+            right--;
+            top++;
+            down--;
+        }
+
+        return ret;
+    }
+};
+
+
 int main()
 {
     int sock = socket(AF_INET,SOCK_STREAM,0);
