@@ -307,6 +307,118 @@ public:
     }
 };
 
+
+struct Node 
+{
+    Node(bool isChar)
+    :_isChar(isChar)
+    {
+        _child.resize(26);
+        for(int i = 0;i < 26;i++)
+        {
+            _child[i] = nullptr;
+        }
+    }
+
+    bool _isChar;
+    vector<Node*> _child;
+};
+
+class Trie {
+public:
+    Node* _root;
+
+    /** Initialize your data structure here. */
+    Trie() 
+    :_root(new Node(false))
+    {
+        
+    }
+    
+    /** Inserts a word into the trie. */
+    void insert(string word) {
+        if(word.empty())
+        {
+            return ;
+        }
+
+        int index = 0;
+        Node* cur = _root;
+        while(index < word.size())
+        {
+            int index_child = word[index] - 'a';
+            if(cur->_child[index_child] == nullptr)
+            {
+                cur->_child[index_child] = new Node(false);
+            }
+            cur = cur->_child[index_child];
+            index++;
+        }
+        cur->_isChar = true;
+    }
+    
+    /** Returns if the word is in the trie. */
+    bool search(string word) {
+        if(word.empty())
+        {
+            return true;
+        }
+
+        Node* cur = _root;
+        int index = 0;
+        while(index < word.size())
+        {
+            int index_child = word[index] - 'a';
+            if(cur->_child[index_child] == nullptr)
+            {
+                return false;
+            }
+
+            cur = cur->_child[index_child];
+            index++;
+        }
+
+        if(cur->_isChar)
+        {
+            return true;
+        }
+        return false;
+    }
+    
+    /** Returns if there is any word in the trie that starts with the given prefix. */
+    bool startsWith(string prefix) {
+        if(prefix.empty())
+        {
+            return true;
+        }
+
+        Node* cur = _root;
+        int index = 0;
+        while(index < prefix.size())
+        {
+            int index_child = prefix[index] - 'a';
+            if(cur->_child[index_child] == nullptr)
+            {
+                return false;
+            }
+
+            cur = cur->_child[index_child];
+            index++;
+        }
+
+        //cur->_isChar = false;
+        return true;
+    }
+};
+
+/**
+ * Your Trie object will be instantiated and called as such:
+ * Trie* obj = new Trie();
+ * obj->insert(word);
+ * bool param_2 = obj->search(word);
+ * bool param_3 = obj->startsWith(prefix);
+ */
+
 int main()
 {
     set<int> arr {1,2,3,4,5,6,7};
