@@ -267,6 +267,46 @@ public:
     }
 };
 
+class Solution {
+public:
+    //void backtrack(vector<vector<int>>& ret,vector<int>& candidates, int& target,vector<int>& track,int index,int cursum)
+
+    vector<vector<int>> ret;
+    void backtrack(vector<int>& candidates, int target,vector<int>& track,int index)
+    {
+        if(0 == target)
+        {    
+            ret.push_back(track);
+            return;
+        }
+
+        for(int i = index;i < candidates.size() && target - candidates[i] >= 0;i++)
+        {
+            if(i > index && candidates[i - 1] == candidates[i])
+                continue;
+
+            track.push_back(candidates[i]);
+            backtrack(candidates,target - candidates[i],track,i + 1);
+            track.pop_back();
+            
+        }
+    }
+
+    vector<vector<int>> combinationSum2(vector<int>& candidates, int target) {
+        if(candidates.empty())
+        {
+            return {};
+        }
+
+        sort(candidates.begin(),candidates.end());
+
+        vector<int> track;
+        
+        backtrack(candidates,target,track,0);
+        return ret;
+    }
+};
+
 int main()
 {
     set<int> arr {1,2,3,4,5,6,7};
