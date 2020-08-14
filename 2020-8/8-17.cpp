@@ -232,6 +232,66 @@ public:
     }
 };
 
+
+class Solution {
+public:
+    vector<int> spiralOrder(vector<vector<int>>& matrix) {
+        if(matrix.empty())
+        {
+            return {};
+        }
+
+        vector<int> ret;
+
+        //左边界
+        int left = 0;
+
+        //右边界
+        int right = matrix[0].size() - 1;
+
+        //上边界
+        int top = 0;
+
+        //下边界
+        int down = matrix.size() - 1;
+
+        while(left <= right && top <= down)
+        {
+            //打印左右边界之间的值，即从左往右
+            for(int i = left;i <= right;i++)
+            {
+                ret.push_back(matrix[top][i]);
+            }           
+
+            //打印上下边界之间的值，即从上往下， + 1的原因是因为第一个元素在上一步已经打印
+            for(int j = top + 1; j <= down;j++)
+            {
+                ret.push_back(matrix[j][right]);
+            }
+
+            //打印右左边界之间的值，即从右往左打印， - 1的原因同理
+            //top != down的目的值防止只有一行的情况，当不只一行的时候才进行从右往左打印
+            for(int m = right - 1;m >= left && top != down;m--)
+            {
+                ret.push_back(matrix[down][m]);
+            }
+
+            //打印下上边界之间的值，注意这个边界，n > top
+            //left != right的原因同理，防止只有一列的情况，当不只一列的时候才进行从下往上打印
+            for(int n = down - 1;n > top && left != right;n--)
+            {
+                ret.push_back(matrix[n][left]);
+            }  
+
+            left++;
+            right--;
+            top++;
+            down--;
+        }
+        return ret;
+    }
+};
+
 int main()
 {
     int sock = socket(AF_INET,SOCK_STREAM,0);
