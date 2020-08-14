@@ -354,6 +354,66 @@ public:
     }
 };
 
+class Solution {
+public:
+
+    string simplifyPath(string path) {
+        if(path.empty())
+        {
+            return "";
+        } 
+
+        stringstream input(path);
+        vector<string> arr;
+
+        string str;
+        while(getline(input,str,'/'))
+        {
+            if(str == "" || str == " ")
+            {
+                continue;
+            }
+
+            arr.push_back(str);
+        }
+
+        vector<string> temp;
+
+        for(auto e : arr)
+        {
+            if(e == ".")
+            {
+                continue;
+            }
+            else if(e == "..")
+            {
+                if(!temp.empty())
+                {
+                    temp.pop_back();
+                }
+            }
+            else 
+            {
+                temp.push_back(e);
+            }
+        }
+
+        string ret = "";
+
+        for(auto e : temp)
+        {
+            ret += "/";
+            ret += e;
+        }
+
+        if(ret == "")
+        {
+            return "/";
+        }
+
+        return ret;
+    }
+};
 
 int main()
 {
