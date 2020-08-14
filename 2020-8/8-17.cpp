@@ -475,6 +475,67 @@ public:
     }
 };
 
+class Solution {
+public:
+    vector<vector<int>> dir = {{1,0},{-1,0},{0,1},{0,-1}};
+
+    bool dfs(vector<vector<char>>& board, string& word, int i,int j, int w)
+    {
+        //不相等
+        if(board[i][j] != word[w]) 
+            return false;
+        
+        //如果最后一个也想等直接返回true
+        if(w == word.length() - 1) 
+            return true;
+        
+        //到这里肯定是相等的，但是可能由多个相等的方向，所以需要回朔
+        //代表选择tmp
+        char tmp = board[i][j];
+
+        //代表选择过，标记一下 
+        board[i][j]=0;
+        
+
+        //遍历4个方向
+        for(auto e : dir)
+        {
+            int new_x = i + e[0];
+            int new_y = j + e[1];
+            //不满足的方向
+            if(new_x < 0 || new_y < 0 || new_x >= board.size() || new_y >= board[0].size())
+            {
+                continue;
+            }
+
+            //如果有一个方向满足条件则递归
+            if(dfs(board,word,new_x,new_y,w + 1))
+            {
+                return true;
+            }
+        }
+
+        //到这里代表1.4个方向没有任何一个方向能够满足条件；2.4个方向中有1个或多个方向满足部分条件
+        //那么就需要回溯
+        board[i][j] = tmp;
+
+        //代表选择这条道路走不通，回溯选下一条
+        return false;
+    }
+
+    bool exist(vector<vector<char>>& board, string word) {
+        for(int i = 0;i < board.size();i++)
+        {
+            for(int j = 0;j < board[0].size();j++) 
+                if(dfs(board, word, i, j, 0)) 
+                    return true;
+        }
+
+        return false;
+    }
+};
+
+
 int main()
 {
     int sock = socket(AF_INET,SOCK_STREAM,0);
