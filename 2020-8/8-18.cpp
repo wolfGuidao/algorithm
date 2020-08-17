@@ -69,6 +69,28 @@ class KMP
         vector<int> _next;
 };
 
+class Solution {
+public:
+    int hIndex(vector<int>& citations) {
+        if(citations.empty())
+        {
+            return 0;
+        }
+
+        sort(citations.begin(),citations.end());
+        int ret = citations.size();
+
+        for(auto e : citations)
+        {
+            if(e < ret)
+            {
+                ret--;
+            }
+        }
+        return ret;
+    }
+};
+
 int main()
 {
     string str = "aabbaabbddaabbeeff";
