@@ -20,6 +20,7 @@ class A
 };
 #endif 
 
+#if 0
 class KMP
 {
     public:
@@ -40,7 +41,7 @@ class KMP
             {
                 while(j && pat[i] != _str[j]) 
                     j = _next[j]; //不停的转移，直到可以匹配或者走到0
-                
+
                 if(pat[i] == _str[j]) 
                     j++; //如果相等，模版串中待匹配位置可以移一位了。
 
@@ -70,61 +71,124 @@ class KMP
 };
 
 class Solution {
-public:
-    int hIndex(vector<int>& citations) {
-        if(citations.empty())
-        {
-            return 0;
-        }
-
-        sort(citations.begin(),citations.end());
-        int ret = citations.size();
-
-        for(auto e : citations)
-        {
-            if(e < ret)
+    public:
+        int hIndex(vector<int>& citations) {
+            if(citations.empty())
             {
-                ret--;
+                return 0;
             }
+
+            sort(citations.begin(),citations.end());
+            int ret = citations.size();
+
+            for(auto e : citations)
+            {
+                if(e < ret)
+                {
+                    ret--;
+                }
+            }
+            return ret;
         }
-        return ret;
-    }
 };
 
 class Solution {
-public:
-    int hIndex(vector<int>& citations) {
-        if(citations.empty())
-        {
-            return 0;
-        }
-
-        int left = 0;
-        int right = citations.size();
-        while(left < right)
-        {
-            int mid = (left + right + 1) >> 1;
-            if(citations[citations.size() - mid] >= mid)
+    public:
+        int hIndex(vector<int>& citations) {
+            if(citations.empty())
             {
-                left = mid;
+                return 0;
             }
-            else 
-            {
-                right = mid - 1;
-            }
-        }
 
-        return right;
-    }
+            int left = 0;
+            int right = citations.size();
+            while(left < right)
+            {
+                int mid = (left + right + 1) >> 1;
+                if(citations[citations.size() - mid] >= mid)
+                {
+                    left = mid;
+                }
+                else 
+                {
+                    right = mid - 1;
+                }
+            }
+
+            return right;
+        }
 };
+#endif
+
+#include <string.h>
+
+void GetNext(char* p,int next[])
+{
+    if(p == nullptr)
+    {
+        return ;
+    }
+
+    int k = -1;
+    int j = 0;
+    next[0] = -1;
+    int pLen = strlen(p);
+    while(j < pLen - 1)
+    {
+        if(k == -1 || p[j] == p[k])
+        {
+            k++;
+            j++;
+            next[j] = k;
+        }
+        else 
+        {
+            k = next[k];
+        }
+    }
+}
+
+int KmpSearch(char* s,char* p)
+{
+    if(s == nullptr || p == nullptr)
+    {
+        return -1;
+    }
+
+    int next[1024];
+    GetNext(p,next);
+    int i = 0;
+    int j = 0;
+    int pLen = strlen(p);
+    int sLen = strlen(s);
+
+    while(i < sLen && j < pLen)
+    {
+        if(j == -1 || s[i] == p[j])
+        {
+            i++;
+            j++;
+        }
+        else 
+        {
+            j = next[j];
+        }
+
+        if(j == pLen)
+        {
+            cout<<i - j<<endl;
+            j = next[j];
+        }
+    }
 
 
+    return i - j;
+}
 
 int main()
 {
-    string str = "aabbaabbddaabbeeff";
-    string pat = "aabbee";
-    KMP kmp(str);
-    kmp.search(pat);
+    char str[] = "aabbaabbddaabbeeff";
+    char pat[] = "aabb";
+    KmpSearch(str,pat);
     return 0;
 }
