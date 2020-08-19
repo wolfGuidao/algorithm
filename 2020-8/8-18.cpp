@@ -120,6 +120,55 @@ class Solution {
 };
 #endif
 
+
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode(int x) : val(x), next(NULL) {}
+ * };
+ */
+class Solution {
+public:
+    vector<int> nextLargerNodes(ListNode* head) {
+        if(head == nullptr)
+        {
+            return {};
+        }
+
+        if(head->next == nullptr)
+        {
+            return {0};
+        }
+
+        vector<int> arr;
+        ListNode* cur = head;
+        while(cur)
+        {
+            arr.push_back(cur->val);
+            cur = cur->next;
+        }
+
+        stack<int> arr_stack;
+        vector<int> ret(arr.size());
+
+        for (int i = 0; i < arr.size(); ++i)
+        {
+            while (!arr_stack.empty() && arr.at(i) > arr.at(arr_stack.top()))
+            {
+                int index = arr_stack.top();
+                arr_stack.pop();
+
+                ret.at(index) = arr.at(i);
+            }
+
+            arr_stack.push(i);
+        }
+        return ret;
+    }
+};
+
 #include <string.h>
 
 void GetNext(char* p,int next[])
