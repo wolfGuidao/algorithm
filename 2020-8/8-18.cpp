@@ -169,6 +169,74 @@ public:
     }
 };
 
+class Solution {
+public:
+    int partitionDisjoint(vector<int>& A) {
+        if(A.empty())
+        {
+            return 0;
+        }
+
+        /*
+        vector<int> left(A.size());
+        vector<int> right(A.size());
+
+        left[0] = A[0];
+        for(int i = 1;i < A.size();i++)
+        {
+            int max_val = max(A[i],left[i - 1]);
+            left[i] = max_val;
+        }
+
+        right[A.size() - 1] = A.back();
+        for(int i = A.size() - 2;i >= 0;i--)
+        {
+            int min_val = min(A[i],right[i + 1]);
+            right[i] = min_val;
+        }
+
+        for(int i = 0;i < A.size() - 1;i++)
+        {
+            if(left[i] <= right[i + 1])
+            {
+                return i + 1;
+            }
+        }   
+
+        */
+
+        //标记结果下标
+        int ret = 0;
+
+        //代表[0,ret]的最大值
+        int max_val = A[0];
+
+        //代表[0,i]的最大值
+        int cur_max_val = A[0];
+
+        for(int i = 0;i < A.size();i++)
+        {
+            //更新cur_max_val
+            cur_max_val = max(cur_max_val,A[i]);
+
+            //如果大于等于[0,ret]之间最大的元素就直接跳过
+            if(A[i] >= max_val)
+            {
+                continue;
+            }
+
+            //标记第一个出现小于的位置，我们后续要满足比[0,ret]区间最大的元素都大，否则一值更新ret
+            //直到等于A的长度
+            ret = i;
+
+            //更新[0,ret]范围内的最大值
+            max_val = cur_max_val;
+        }
+
+        return ret + 1;
+    }
+};
+
 #include <string.h>
 
 void GetNext(char* p,int next[])
