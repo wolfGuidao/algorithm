@@ -88,6 +88,30 @@ public:
     }
 };
 
+class Solution {
+public:
+    int minMoves2(vector<int>& nums) {
+        if(nums.empty())
+        {
+            return 0;
+        }
+
+        //我们可以把问题转化成数组中的所有数到某一点的距离之和最小
+        //num[0] - val + num[1] - val +...+ num[n] - val
+        //这个数就是数组的中位数
+        sort(nums.begin(),nums.end());
+        int val = nums[nums.size() / 2];
+
+        int ret = 0;
+        for(auto& e : nums)
+        {
+            ret += abs(e - val);
+        }
+
+        return ret;
+    }
+};
+
 int main()
 {
     string str1 = "123456789123456789123456789";
