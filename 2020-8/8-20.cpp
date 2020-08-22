@@ -100,3 +100,112 @@ public:
         board = arr;
     }
 };
+
+
+
+class Solution {
+public:
+
+    int GetMin(vector<int>& arr,int target,vector<int>& visted)
+    {
+        if(target < 0)
+        {
+            return -1;
+        }
+
+        if(visted[target] != -1)
+        {
+            return visted[target];
+        }
+
+        if(0 == target)
+        {
+            return 0;
+        }
+
+        int ret = INT_MAX;
+        for(auto e : arr)
+        {
+            int val = GetMin(arr,target - e,visted);
+            if(val == -1)
+            {
+                continue;
+            }
+
+            ret = min(ret,val + 1);
+        }
+
+        visted[target] = ret;
+        return ret;
+    }
+
+    int numSquares(int n) {
+        if(n < 1)
+        {
+            return 0;
+        }
+
+        vector<int> arr;
+        for(int i = 1;i <= n;i++)
+        {
+            if(i * i <= n)
+            {
+                arr.push_back(i * i);
+            }
+            else 
+            {
+                break;
+            }
+        }
+
+        /*
+        vector<vector<int>> dp(arr.size() + 1,vector<int>(n + 1,0));
+        for(int i = 0;i < n + 1;i++)
+        {
+            dp[0][i] = i;
+        }
+
+        for(int i = 1;i <= arr.size();i++)
+        {
+            for(int j = 1;j <= n;j++)
+            {
+                if(j < arr[i - 1])
+                    dp[i][j] = dp[i-1][j];
+                else
+                    dp[i][j] = min(dp[i][j - arr[i - 1]] + 1,dp[i-1][j]);
+            }
+        }
+        return dp[arr.size()][n];
+        */
+
+        vector<int> visted(n + 1,-1);
+        return GetMin(arr,n,visted);
+    }
+};
+
+
+/*
+class Solution {
+public:
+    int numSquares(int n) {
+        if(n==0)
+            return 0;
+        int ceil = sqrt(n);
+        vector<vector<int> > dp(ceil+1,vector<int>(n+1));
+        for(int i=0;i<=n;i++)
+            dp[0][i] = i;
+        for(int i=0;i<=ceil;i++)
+            dp[i][0] = 0;
+
+        for(int i=1;i<=ceil;i++){
+            for(int j=1;j<=n;j++){
+                if(j < i*i)
+                    dp[i][j] = dp[i-1][j];
+                else
+                    dp[i][j] = min(dp[i][j-i*i]+1,dp[i-1][j]);
+            }
+        }
+        return dp[ceil][n];
+    }
+};
+*/
