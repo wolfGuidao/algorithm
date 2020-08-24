@@ -59,3 +59,36 @@ public:
     }
 };
 
+class Solution {
+public:
+    int minSubArrayLen(int s, vector<int>& nums) {
+        if(nums.empty())
+        {
+            return 0;
+        }
+
+        int ret = INT_MAX;
+        int left = 0;
+        int right = 0;
+        int sum = 0;
+        while(right < nums.size())
+        {
+            sum += nums[right];
+            while(sum >= s)
+            {
+                ret = min(ret,right - left + 1);
+                sum -= nums[left];
+                left++;
+            }
+
+            if(sum < s) 
+            {
+                right++;
+            }
+        }
+
+        if(ret == INT_MAX)
+            return 0;
+        return ret;
+    }
+};
