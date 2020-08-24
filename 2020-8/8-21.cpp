@@ -137,3 +137,72 @@ public:
         return ret;
     }
 };
+
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode(int x) : val(x), next(NULL) {}
+ * };
+ */
+class Solution {
+public:
+    ListNode* reverseBetween(ListNode* head, int m, int n) {
+        if(head == nullptr)
+        {
+            return head;
+        }
+
+        //cur代表当前节点  
+        ListNode* cur = head;
+        
+        //代表当前节点的前一个节点
+        ListNode* prev = nullptr;
+
+        //循环的目的是把prev指向第m个节点前的一个节点
+        //把cur指向第m个节点
+        while (m > 1) 
+        {
+            prev = cur;
+            cur = cur->next;
+            if(cur == nullptr)
+            {
+                return head;
+            }
+            m--;
+            n--;
+        }
+
+        //保存prev节点的位置，因为翻转后还需要链接在一起
+        ListNode* con = prev;
+        prev = nullptr;
+
+        //代表翻转的尾节点指针
+        ListNode* tail = cur;
+
+        //代表当前节点的下一个节点，因为当前节点指向已经改变需要保存
+        ListNode* third = nullptr;
+        while (n > 0) 
+        {
+            third = cur->next;
+            cur->next = prev;
+            prev = cur;
+            cur = third;
+            n--;
+        }
+
+        //链接起来
+        if (con != nullptr) 
+        {
+            con->next = prev;
+        } 
+        else 
+        {
+            head = prev;
+        }
+
+        tail->next = third;
+        return head;
+    }
+};
