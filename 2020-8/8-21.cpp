@@ -92,3 +92,48 @@ public:
         return ret;
     }
 };
+
+class Solution {
+public:
+    vector<vector<int>> ret;
+
+    int GetSumVec(vector<int>& track)
+    {
+        int sum = 0;
+        for(auto& e : track)
+        {
+            sum += e;
+        }
+
+        return sum;
+    }
+
+    void backtrack(vector<int>& arr,vector<int>& track,int index,int k,int n)
+    {
+        if(track.size() == k)
+        {
+            if(GetSumVec(track) == n)
+                ret.push_back(track);
+            return ;
+        }
+
+        for(int i = index;i < arr.size();i++)
+        {
+            track.push_back(arr[i]);
+            backtrack(arr,track,i + 1,k,n);
+            track.pop_back();
+        }
+    }
+
+    vector<vector<int>> combinationSum3(int k, int n) {
+        if(k < 1 || n < 1)
+        {
+            return {};
+        }
+
+        vector<int> arr{1,2,3,4,5,6,7,8,9};
+        vector<int> track;
+        backtrack(arr,track,0,k,n);
+        return ret;
+    }
+};
