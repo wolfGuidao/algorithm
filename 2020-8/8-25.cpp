@@ -55,3 +55,40 @@ public:
         return false;
     }
 };
+
+class Solution {
+public:
+    int rangeBitwiseAnd(int m, int n) {
+        /*
+        //超时
+        int ret = m;
+        for(int i = m + 1;i <= n;i++)
+        {
+            ret = ret & i;
+        }
+        */
+
+        /*
+        //思想是：求二进制的公共前缀
+        int ret = 0;
+        //当他们相等的时候就是公共前缀
+        while(m < n)
+        {
+            m = m >> 1;
+            n = n >> 1;
+            ret++;
+        }
+
+        //把位数补回来，即右边补0
+        return m << ret;
+        */
+
+        //同理
+        while(m < n)
+        {
+            n = n & (n - 1);
+        }
+
+        return n;
+    }
+};
