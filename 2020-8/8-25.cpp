@@ -130,3 +130,42 @@ public:
         return true;
     }
 };
+
+
+/**
+ * Definition for a binary tree node.
+ * struct TreeNode {
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
+ * };
+ */
+class Solution {
+public:
+    int ret = 0;
+    
+    void NodeNum(TreeNode* root)
+    {
+        if(root)
+        {
+            ret++;
+            NodeNum(root->left);
+            NodeNum(root->right);
+        }
+    } 
+
+    int countNodes(TreeNode* root) {
+        if(root == nullptr)
+        {
+            return 0;
+        }
+
+        /*
+        NodeNum(root);
+        return ret;
+        */
+
+        return 1 + countNodes(root->left) + countNodes(root->right);
+    }
+};
