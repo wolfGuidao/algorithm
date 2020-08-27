@@ -92,3 +92,41 @@ public:
         return n;
     }
 };
+
+
+class Solution {
+public:
+    bool isIsomorphic(string s, string t) {
+        if(s.size() != t.size())
+        {
+            return false;
+        }
+
+        /*
+        for(int i = 0;i < s.size();i++)
+        {
+            if(s.find(s[i]) != t.find(t[i]))
+            {
+                return false;
+            }
+        }
+        return true;
+        */
+
+        vector<int> s_map(256,-1);
+        vector<int> t_map(256,-1);
+
+        for(int i = 0;i < s.size();i++)
+        {
+            if(s_map[s[i]] != t_map[t[i]])
+            {
+                return false;
+            }
+
+            s_map[s[i]] = i;
+            t_map[t[i]] = i;    
+        }
+
+        return true;
+    }
+};
