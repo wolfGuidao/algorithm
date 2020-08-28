@@ -98,4 +98,32 @@ public:
     }
 };
 
+class Solution {
+public:
+    vector<int> findClosestElements(vector<int>& arr, int k, int x) {
+        
+        //思想是：删除
+        //删除左右边界中距离x远的n - k个元素，保留k个
+        vector<int> ret;
+        int count = arr.size() - k;
+        int left = 0;
+        int right = arr.size() - 1;
+        while(count--)
+        {
+            if(abs(arr[left] - x) > abs(arr[right] - x))
+            {
+                left++;
+            }
+            else if(abs(arr[left] - x) <= abs(arr[right] - x))
+            {
+                right--;
+            }
+        }
 
+        for(int i = left;i <= right;i++)
+        {
+            ret.push_back(arr[i]);
+        }
+        return ret;
+    }
+};
