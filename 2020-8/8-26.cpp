@@ -190,3 +190,55 @@ public:
     }
 };
 
+
+class Solution {
+public:
+    bool isMatch(string s, string p) {
+        int ns = s.size();
+        int np = p.size();
+
+        if(p.empty()) 
+            return s.empty();
+
+        vector<vector<bool>> dp(ns + 1, vector<bool>(np + 1, false));
+
+		//初始化为true，因为空和空肯定是匹配的
+        dp[0][0] = true;
+
+		//这里的base case是初始化*匹配0次的情况
+        for(int i = 1; i <= np; i++)
+        {
+            if(i - 2 >= 0 && p[i - 1] == '*' && p[i - 2])
+            {
+                dp[0][i] = dp[0][i - 2];
+            }
+        }
+        
+        //开始状态转移
+        for(int i = 1; i <= ns; i++)
+        {
+            for(int j = 1; j <= np; j++)
+            {
+            	//p的前一个字符和s的前一个字符相等会p的前一个字符是'.'直接转移
+                if(p[j - 1] == s[i - 1] || p[j - 1] == '.')
+                    dp[i][j] = dp[i - 1][j - 1];
+
+				//如果p的前一个为'*'就需要考虑匹配0次和多次了
+                if(p[j - 1] == '*')
+                {
+                    bool zero, one;
+                    if(j - 2 >= 0)
+                    {
+                    	//匹配0次
+                        zero = dp[i][j - 2];
+                        //匹配多次
+                        one = (p[j - 2] == s[i - 1] || p[j - 2] == '.') && dp[i - 1][j];
+                        dp[i][j] = zero || one;
+                    }
+                }
+            }
+        }
+        return dp[ns][np];
+    }
+};
+
