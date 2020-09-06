@@ -53,3 +53,34 @@ public:
     }
 };
 
+
+class Solution {
+public:
+    void sortColors(vector<int>& nums) {
+        //sort(nums.begin(),nums.end());
+        int left_0 = 0;
+        int right_2 = nums.size() - 1;
+        int cur = 0;
+        while(cur <= right_2)
+        {
+            if(nums[cur] == 0)
+            {
+                swap(nums[left_0],nums[cur]);
+                //这里++是因为前面只可能为0和1
+                cur++;
+                left_0++;
+            }
+            else if(nums[cur] == 2)
+            {
+                swap(nums[right_2],nums[cur]);
+                right_2--;
+                //这里不能++，因为可能为1
+                //cur++;
+            }
+            else
+            {
+                cur++;
+            }
+        }
+    }   
+};
