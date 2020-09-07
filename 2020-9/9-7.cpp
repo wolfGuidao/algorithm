@@ -38,3 +38,316 @@ int main()
     }
     return 0;
 }
+return left.second > right.second;
+return left.second > right.second;
+class Solution {
+public:
+    class cmp
+    {
+        public:
+        bool operator()(pair<int, int>& m, pair<int, int>& n) 
+        {
+            return m.second > n.second;
+        }
+    };
+    
+
+    vector<int> topKFrequent(vector<int>& nums, int k) {
+        unordered_map<int,int> my_map;
+        for(auto& e : nums)
+        {
+            my_map[e]++;
+        }
+
+        //priority_queue<pair<int, int>, vector<pair<int, int>>, decltype(&cmp)> pri(cmp);
+        priority_queue<pair<int, int>, vector<pair<int, int>>, cmp> pri;
+        for(auto& e : my_map)
+        {
+            if(pri.size() < k)
+            {
+                pri.push(e);
+            }
+            else if(pri.size() == k)
+            {
+                if(pri.top().second < e.second)
+                {
+                    pri.pop();
+                    pri.push(e);
+                }
+                else 
+                {
+                    continue;
+                }
+            }
+        }
+
+        vector<int> ret;
+        while(!pri.empty())
+        {
+            ret.push_back(pri.top().first);
+            pri.pop();
+        }
+
+        return ret;
+    }
+};
+
+class Solution {
+public:
+    class cmp
+    {
+        public:
+        bool operator()(pair<int, int>& m, pair<int, int>& n) 
+        {
+            return m.second > n.second;
+        }
+    };
+    
+
+    vector<int> topKFrequent(vector<int>& nums, int k) {
+        unordered_map<int,int> my_map;
+        for(auto& e : nums)
+        {
+            my_map[e]++;
+        }
+
+        //priority_queue<pair<int, int>, vector<pair<int, int>>, decltype(&cmp)> pri(cmp);
+        priority_queue<pair<int, int>, vector<pair<int, int>>, cmp> pri;
+        for(auto& e : my_map)
+        {
+            if(pri.size() < k)
+            {
+                pri.push(e);
+            }
+            else if(pri.size() == k)
+            {
+                if(pri.top().second < e.second)
+                {
+                    pri.pop();
+                    pri.push(e);
+                }
+                else 
+                {
+                    continue;
+                }
+            }
+        }
+
+        vector<int> ret;
+        while(!pri.empty())
+        {
+            ret.push_back(pri.top().first);
+            pri.pop();
+        }
+
+        return ret;
+    }
+};
+
+class Solution {
+public:
+    class cmp
+    {
+        public:
+        bool operator()(pair<int, int>& m, pair<int, int>& n) 
+        {
+            return m.second > n.second;
+        }
+    };
+    
+
+    vector<int> topKFrequent(vector<int>& nums, int k) {
+        unordered_map<int,int> my_map;
+        for(auto& e : nums)
+        {
+            my_map[e]++;
+        }
+
+        //priority_queue<pair<int, int>, vector<pair<int, int>>, decltype(&cmp)> pri(cmp);
+        priority_queue<pair<int, int>, vector<pair<int, int>>, cmp> pri;
+        for(auto& e : my_map)
+        {
+            if(pri.size() < k)
+            {
+                pri.push(e);
+            }
+            else if(pri.size() == k)
+            {
+                if(pri.top().second < e.second)
+                {
+                    pri.pop();
+                    pri.push(e);
+                }
+                else 
+                {
+                    continue;
+                }
+            }
+        }
+
+        vector<int> ret;
+        while(!pri.empty())
+        {
+            ret.push_back(pri.top().first);
+            pri.pop();
+        }
+
+        return ret;
+    }
+};
+
+class Solution {
+public:
+    class cmp
+    {
+        public:
+        bool operator()(pair<int, int>& m, pair<int, int>& n) 
+        {
+            return m.second > n.second;
+        }
+    };
+    
+
+    vector<int> topKFrequent(vector<int>& nums, int k) {
+        unordered_map<int,int> my_map;
+        for(auto& e : nums)
+        {
+            my_map[e]++;
+        }
+
+        //priority_queue<pair<int, int>, vector<pair<int, int>>, decltype(&cmp)> pri(cmp);
+        priority_queue<pair<int, int>, vector<pair<int, int>>, cmp> pri;
+        for(auto& e : my_map)
+        {
+            if(pri.size() < k)
+            {
+                pri.push(e);
+            }
+            else if(pri.size() == k)
+            {
+                if(pri.top().second < e.second)
+                {
+                    pri.pop();
+                    pri.push(e);
+                }
+                else 
+                {
+                    continue;
+                }
+            }
+        }
+
+        vector<int> ret;
+        while(!pri.empty())
+        {
+            ret.push_back(pri.top().first);
+            pri.pop();
+        }
+
+        return ret;
+    }
+};
+
+class Solution {
+public:
+    class cmp
+    {
+        public:
+        bool operator()(pair<int, int>& m, pair<int, int>& n) 
+        {
+            return m.second > n.second;
+        }
+    };
+    
+
+    vector<int> topKFrequent(vector<int>& nums, int k) {
+        unordered_map<int,int> my_map;
+        for(auto& e : nums)
+        {
+            my_map[e]++;
+        }
+
+        //priority_queue<pair<int, int>, vector<pair<int, int>>, decltype(&cmp)> pri(cmp);
+        priority_queue<pair<int, int>, vector<pair<int, int>>, cmp> pri;
+        for(auto& e : my_map)
+        {
+            if(pri.size() < k)
+            {
+                pri.push(e);
+            }
+            else if(pri.size() == k)
+            {
+                if(pri.top().second < e.second)
+                {
+                    pri.pop();
+                    pri.push(e);
+                }
+                else 
+                {
+                    continue;
+                }
+            }
+        }
+
+        vector<int> ret;
+        while(!pri.empty())
+        {
+            ret.push_back(pri.top().first);
+            pri.pop();
+        }
+
+        return ret;
+    }
+};
+
+class Solution {
+public:
+    class cmp
+    {
+        public:
+        bool operator()(pair<int, int>& m, pair<int, int>& n) 
+        {
+            return m.second > n.second;
+        }
+    };
+    
+
+    vector<int> topKFrequent(vector<int>& nums, int k) {
+        unordered_map<int,int> my_map;
+        for(auto& e : nums)
+        {
+            my_map[e]++;
+        }
+
+        //priority_queue<pair<int, int>, vector<pair<int, int>>, decltype(&cmp)> pri(cmp);
+        priority_queue<pair<int, int>, vector<pair<int, int>>, cmp> pri;
+        for(auto& e : my_map)
+        {
+            if(pri.size() < k)
+            {
+                pri.push(e);
+            }
+            else if(pri.size() == k)
+            {
+                if(pri.top().second < e.second)
+                {
+                    pri.pop();
+                    pri.push(e);
+                }
+                else 
+                {
+                    continue;
+                }
+            }
+        }
+
+        vector<int> ret;
+        while(!pri.empty())
+        {
+            ret.push_back(pri.top().first);
+            pri.pop();
+        }
+
+        return ret;
+    }
+};
