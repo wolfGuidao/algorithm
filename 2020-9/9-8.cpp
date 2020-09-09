@@ -64,3 +64,65 @@ int main()
 
     return 0;
 }
+
+class Difference 
+{
+    public:
+    Difference(vector<int> nums) 
+    {
+        assert(nums.size() > 0);
+        diff.resize(nums.size(),0);
+
+        // 构造差分数组
+        diff[0] = nums[0];
+        for (int i = 1; i < nums.size(); i++) 
+        {
+            diff[i] = nums[i] - nums[i - 1];
+        }
+    }
+
+    /* 给闭区间 [i,j] 增加 val（可以是负数）*/
+    void increment(int i, int j, int val) 
+    {
+        diff[i] += val;
+        if (j + 1 < diff.size()) 
+        {
+            diff[j + 1] -= val;
+        }
+    }
+
+    vector<int> result() 
+    {
+        vector<int> ret(diff.size());
+        
+        // 根据差分数组构造结果数组
+        ret[0] = diff[0];
+        for (int i = 1; i < diff.size(); i++) 
+        {
+            ret[i] = ret[i - 1] + diff[i];
+        }
+        return ret;
+    }
+
+    private:
+    vector<int> diff;
+};
+
+class Solution {
+public:
+    vector<int> corpFlightBookings(vector<vector<int>>& bookings, int n) {
+        vector<int> nums(n,0);
+        Difference df(nums);
+
+        for(auto& e : bookings)
+        {
+            int i = e[0] - 1;
+            int j = e[1] - 1;
+            int val = e[2];
+            df.increment(i,j,val);
+        }
+
+        return df.result();
+    }
+};
+
