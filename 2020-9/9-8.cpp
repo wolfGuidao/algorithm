@@ -126,3 +126,60 @@ public:
     }
 };
 
+
+/**
+ * Definition for a binary tree node.
+ * struct TreeNode {
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
+ * };
+ */
+
+class Solution {
+public:
+    vector<TreeNode*> ret;
+
+    void dfs(TreeNode*& root,vector<int>& to_delete)
+    {
+        if(root == nullptr)
+        {
+            return ;
+        }
+
+        dfs(root->left,to_delete);
+        dfs(root->right,to_delete);
+
+        if(find(to_delete.begin(),to_delete.end(),root->val) != to_delete.end())
+        {
+            if(root->left)
+            {
+                ret.push_back(root->left);
+            }
+
+            if(root->right)
+            {
+                ret.push_back(root->right);
+            }
+
+            root = nullptr;
+        }
+        return ;
+    }
+
+    vector<TreeNode*> delNodes(TreeNode* root, vector<int>& to_delete) {
+        if(root == nullptr)
+        {
+            return {};
+        }
+
+        dfs(root,to_delete);
+
+        if(root)
+            ret.push_back(root);
+
+        return ret;
+    }
+};
+
