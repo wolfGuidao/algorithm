@@ -171,3 +171,58 @@ public:
         return str;
     }
 };
+
+
+/**
+ * Definition for a binary tree node.
+ * struct TreeNode {
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
+ * };
+ */
+class BSTIterator {
+public:
+    BSTIterator(TreeNode* root) {
+        _inner(root);
+        _index = 0;
+        _size = _arr.size();
+    }
+    
+    /** @return the next smallest number */
+    int next() {
+        return _arr[_index++];
+    }
+    
+    /** @return whether we have a next smallest number */
+    bool hasNext() {
+        if(_index < _size)
+        {
+            return true;
+        }
+
+        return false;
+    }
+    private:
+    void _inner(TreeNode* root)
+    {
+        if(root)
+        {
+            _inner(root->left);
+            _arr.push_back(root->val);
+            _inner(root->right);
+        }
+    }
+
+    vector<int> _arr;
+    int _index;
+    int _size;
+};
+
+/**
+ * Your BSTIterator object will be instantiated and called as such:
+ * BSTIterator* obj = new BSTIterator(root);
+ * int param_1 = obj->next();
+ * bool param_2 = obj->hasNext();
+ */
