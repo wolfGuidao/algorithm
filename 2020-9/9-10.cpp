@@ -101,3 +101,73 @@ int main()
     Print();
     return 0;
 }
+
+
+class Solution {
+public:
+    string reverseWords(string s) {
+        if(s.empty() || s == "")
+        {
+            return "";
+        }
+
+        int start = 0;
+        while(start < s.size() && s[start] == ' ')
+        {
+            start++;
+        }
+
+        int end = s.size() - 1;
+        while(end >= 0 && s[end] == ' ')
+        {
+            end--;
+        }
+
+        if(start > end)
+        {
+            return "";
+        }
+        string temp = s.substr(start,end - start + 1);
+        string str = "";
+        int i = 0;
+        while(i < temp.size())
+        {
+            while(i < temp.size() && temp[i] != ' ')
+            {
+                str += temp[i];
+                i++;
+            }
+
+            if(i == temp.size())
+            {
+                break;
+            }
+
+            str += ' ';
+            while(temp[i] == ' ')
+            {
+                i++;
+            }
+        }
+
+        reverse(str.begin(),str.end());
+
+        int index = 0;
+        int begin = 0;
+        while(index < str.size())
+        {
+            while(index < str.size() && str[index] != ' ')
+            {
+                index++;
+            }
+
+            reverse(str.begin() + begin,str.begin() + index);
+            
+            index++;
+
+            begin = index;
+        }
+
+        return str;
+    }
+};
