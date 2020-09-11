@@ -226,3 +226,46 @@ public:
  * int param_1 = obj->next();
  * bool param_2 = obj->hasNext();
  */
+
+
+class Solution {
+public:
+    class cmp 
+    {
+        public:
+        bool operator()(int left,int right)
+        {
+            string a = to_string(left) + to_string(right);
+            string b = to_string(right) + to_string(left);
+            return a > b;
+        }
+    };
+
+    string largestNumber(vector<int>& nums) {
+        if(nums.empty())
+        {
+            return "";
+        }
+
+        if(nums.size() == 1)
+        {
+            return to_string(nums[0]);
+        }
+
+        sort(nums.begin(),nums.end(),cmp());
+
+        string ret = "";
+        for(auto e : nums)
+        {
+            ret += to_string(e);
+        }
+
+        if(ret[0] == '0')
+        {
+            return "0";
+        }
+
+        return ret;
+    }
+};
+
