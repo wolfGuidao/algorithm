@@ -4,6 +4,7 @@
 # Mail: wolfguidao@163.com 
 # Created Time: 2020年09月15日 星期二 11时33分37秒
 *************************************************************************/
+/*
 class Solution {
 public:
     bool IsTrue(char ch)
@@ -92,3 +93,74 @@ public:
         return ret;
     }
 };
+*/
+
+class Solution {
+public:
+    void moveZeroes(vector<int>& nums) {
+        /*
+        int prev = 0;
+        int cur = 0;
+        while(cur < nums.size())
+        {
+            if(nums[cur] != 0)
+            {
+                swap(nums[cur],nums[prev]);
+                cur++;
+                prev++;
+            }
+            else 
+            {
+                cur++;
+            }
+        }
+        */
+
+        /*
+        vector<int> arr(nums.size(),0);
+        int index = 0;
+        for(auto& e : nums)
+        {
+            if(e != 0)
+            {
+                arr[index++] = e;
+            }
+        }
+
+        nums = arr;
+        */
+
+        int index = 0;
+        for(int i = 0;i < nums.size();i++)
+        {
+            if(nums[i] != 0)
+            {
+                nums[index++] = nums[i];
+            }
+        }
+
+        for(;index < nums.size();index++)
+        {
+            nums[index] = 0;
+        }
+    }
+};
+
+#include <iostream>
+using namespace std;
+
+class Test 
+{
+    public:
+        int x;
+        int y;
+        int z;
+};
+
+int main()
+{
+    Test* test = NULL;
+    int* offset = (int*)(&(test->z));
+    cout<<offset - NULL<<endl;
+    return 0;
+}
