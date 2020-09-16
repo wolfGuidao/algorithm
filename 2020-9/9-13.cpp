@@ -164,3 +164,44 @@ int main()
     cout<<offset - NULL<<endl;
     return 0;
 }
+
+
+class Solution {
+public:
+    string getHint(string secret, string guess) {
+        unordered_map<char,int> my_map;
+
+        //记录位子和字符相等的元素的个数  
+        int count_a = 0;
+        for(int i = 0;i < secret.size();i++)
+        {
+            my_map[secret[i]]++;
+            if(secret[i] == guess[i])
+            {
+                count_a++;
+            }
+        }
+
+        //元素个数满足的情况
+        int count_b = 0;
+        for(auto& e : guess)
+        {
+            if(my_map[e] > 0)
+            {
+                count_b++;
+                my_map[e]--;
+            }
+        }
+
+        //需要减去位子刚好满足的情况
+        count_b -= count_a;
+
+        //组织结果
+        string ret = "";
+        ret += to_string(count_a);
+        ret += 'A';
+        ret += to_string(count_b);
+        ret += 'B';
+        return ret;
+    }
+};
