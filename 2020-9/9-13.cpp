@@ -293,3 +293,35 @@ public:
         return root;
     }
 };
+
+
+class Solution {
+public:
+    int canCompleteCircuit(vector<int>& gas, vector<int>& cost) {
+        if(gas.size() != cost.size() || gas.empty() || cost.empty())
+        {
+            return -1;
+        }
+
+        int start = 0;
+        int sum = 0;
+        int cur = 0;
+        for(int i = 0;i < gas.size();i++)
+        {
+            sum += (gas[i] - cost[i]);
+            cur += (gas[i] - cost[i]);
+            if(cur < 0)
+            {
+                start = i + 1;
+                cur = 0;
+            }
+        }
+
+        if(sum < 0)
+        {
+            return -1;
+        }
+
+        return start;
+    }
+};
