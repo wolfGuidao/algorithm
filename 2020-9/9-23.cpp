@@ -14,6 +14,7 @@ int main()
     {
         //printf("@\n");
         printf("@");
+        fflush(stdout);
         fork();
     }
     return 0;
