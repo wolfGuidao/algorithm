@@ -41,10 +41,54 @@ class Test
 
 int Test::test_static = 999;
 
+#include <vector>
+#include <algorithm>
 
+#if 0
+bool Cmp(int a,int b)
+{
+    return a < b;
+}
+#endif 
+
+#include <thread>
+
+class Cmp 
+{
+    public:
+        bool operator()(int a,int b)
+        {
+            return a < b;
+        }
+};
+
+#include <atomic>
+
+int val = 999;
 int main()
 {
-    Test a;
-    Test::Print(&a);
+    vector<int> arr {10,9,8,7,6,5,4,3,2,1};
+    //sort(arr.begin(),arr.end(),Cmp);
+    //sort(arr.begin(),arr.end(),Cmp());//仿函数需要带括号
+    sort(arr.begin(),arr.end(),[](int a,int b)
+            {
+                return a < b;
+            });
+    for(auto& e : arr)
+    {
+        cout<<e<<" ";
+    }
+    cout<<endl;
+
+    thread t1([](int a){
+               a = 666; 
+            },std::ref(val));
+
+    t1.join();
+    cout<<val<<endl;
+    
+    atomic<int> test_int {999};
+    cout<<test_int<<endl;
+
     return 0;
 }
