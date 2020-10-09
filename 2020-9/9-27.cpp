@@ -64,3 +64,96 @@ public:
         return ret;
     }
 };
+
+
+class Solution {
+public:
+    vector<int> majorityElement(vector<int>& nums) {
+        /*
+        unordered_map<int,int> my_map;
+        vector<int> ret;
+        for(auto& e : nums)
+        {
+            my_map[e]++;
+        }
+
+        for(auto& e : my_map)
+        {
+            if(e.second > nums.size() / 3)
+            {
+                ret.emplace_back(e.first);
+            }
+        }
+
+        return ret;
+        */
+        if(nums.empty())
+        {
+            return {};
+        }
+
+        int target1 = nums[0];
+        int count1 = 0;
+
+        int target2 = nums[0];
+        int count2 = 0;
+
+        for(auto& e : nums)
+        {
+            if(e == target1)
+            {
+                count1++;
+                continue;
+            }
+            else if(e == target2)
+            {
+                count2++;
+                continue;
+            }
+
+            if(count1 == 0)
+            {
+                target1 = e;
+                count1++;
+                continue;
+            }
+            else if(count2 == 0)
+            {
+                target2 = e;
+                count2++;
+                continue;
+            }
+
+            count1--;
+            count2--;
+        }
+
+        int val1 = 0;
+        int val2 = 0;
+        for(auto& e : nums)
+        {
+            if(e == target1)
+            {
+                val1++;
+            }
+            else if(e == target2)
+            {
+                val2++;
+            }
+        }
+
+        vector<int> ret;
+        if(val1 > nums.size() / 3)
+        {
+            ret.emplace_back(target1);
+        }
+
+        if(val2 > nums.size() / 3)
+        {
+            ret.emplace_back(target2);
+        }
+
+        return ret;
+    }
+};
+
